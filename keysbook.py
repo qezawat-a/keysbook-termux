@@ -88,16 +88,29 @@ def openssl_decrypt(encoded: str, password: str) -> str:
 
 def load_vault() -> list[dict]:
     if not VAULT.exists(): return []
-    password = getpass.getpass("Vault password: ")
-    try: return json.loads(openssl_decrypt(VAULT.read_text(), password))
-    except (ValueError, json.JSONDecodeError, OSError):
-        print("Wrong password or damaged vault."); return []
+    encoded = VAULT.read_text(encoding="utf-8")
+    for attempt in range(3):
+        password = getpass.getpass(f"Vault password (attempt {attempt + 1}/3): ")
+        try:
+            items = json.loads(openssl_decrypt(encoded, password))
+            if not isinstance(items, list): raise ValueError("invalid vault data")
+            console.print(f"[ok]Loaded {len(items)} saved key(s).[/ok]")
+            return items
+        except (ValueError, json.JSONDecodeError, OSError):
+            console.print("[bad]Wrong Vault password. Saved data was not deleted.[/bad]")
+    console.print(f"[bad]Vault could not be opened: {VAULT}[/bad]")
+    return []
 
 
 def save_vault(items: list[dict], password: str | None = None):
     APP_DIR.mkdir(mode=0o700, exist_ok=True)
-    if password is None: password = getpass.getpass("Create vault password: ")
-    VAULT.write_text(openssl_encrypt(json.dumps(items), password)); VAULT.chmod(0o600)
+    if password is None: password = getpass.getpass("Vault password: ")
+    if not password: raise ValueError("Vault password cannot be empty")
+    temp = VAULT.with_suffix(".tmp")
+    temp.write_text(openssl_encrypt(json.dumps(items), password), encoding="utf-8")
+    temp.chmod(0o600)
+    temp.replace(VAULT)
+    console.print(f"[ok]Saved {len(items)} key(s) to {VAULT}[/ok]")
 
 
 def clipboard(text: str):
