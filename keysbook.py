@@ -32,6 +32,19 @@ APP_DIR = Path.home() / ".keysbook"
 VAULT = APP_DIR / "vault.json"
 
 # OpenAI-compatible defaults. Providers marked custom_endpoint need extra fields.
+PRIORITY_MODELS = {
+    "OpenAI": ["gpt-4o-mini", "gpt-4.1-mini", "gpt-4o"],
+    "Anthropic": ["claude-3-5-haiku-latest", "claude-3-5-sonnet-latest", "claude-sonnet-4"],
+    "OpenRouter": ["openai/gpt-4o-mini", "google/gemini-2.0-flash-001", "anthropic/claude-3.5-haiku"],
+    "DeepSeek": ["deepseek-chat", "deepseek-reasoner"],
+    "Groq": ["llama-3.1-8b-instant", "llama-3.3-70b-versatile"],
+    "Ollama Local": ["llama3.2", "qwen2.5:7b", "gemma3"],
+    "Ollama Cloud": ["llama3.2", "qwen3", "gemma3"],
+    "Kilo": ["anthropic/claude-sonnet-4.5", "openai/gpt-4o", "google/gemini-2.5-flash"],
+}
+MAX_FAST_TESTS = 3
+
+
 PROVIDERS = [
     ("OpenAI", "https://api.openai.com/v1"),
     ("Anthropic", "https://api.anthropic.com"),
@@ -175,6 +188,13 @@ def add_key(items):
     show_models(items[-1])
 
 
+def fast_candidates(provider: str, models: list[str]) -> list[str]:
+    preferred = PRIORITY_MODELS.get(provider, [])
+    exact = [model for model in preferred if model in models]
+    remaining = [model for model in models if model not in exact]
+    return (exact + remaining)[:MAX_FAST_TESTS]
+
+
 def test_model(item: dict, model: str) -> tuple[bool, str]:
     """Send one minimal request. This verifies actual inference access, not just listing access."""
     base = normalize(item["base_url"])
@@ -207,8 +227,9 @@ def show_models(item):
         if not models:
             console.print("[bad]No models returned for this key.[/bad]"); return
         usable = []
-        console.print(f"[muted]Testing {len(models)} models with one minimal request each; failed models will be hidden.[/muted]")
-        for number, model in enumerate(models, 1):
+        candidates = fast_candidates(item["provider"], models)
+        console.print(f"[muted]Fast check: testing up to {len(candidates)} likely models first; failed models will be hidden.[/muted]")
+        for number, model in enumerate(candidates, 1):
             with console.status(f"[accent]Testing {number}/{len(models)}[/accent] {model}"):
                 ok, _ = test_model(item, model)
             if ok: usable.append(model)
@@ -226,6 +247,11 @@ def show_models(item):
             if not choice: break
             if choice == "r": return show_models(item)
             if choice.isdigit() and 1 <= int(choice) <= len(usable): clipboard(usable[int(choice)-1]); break
+    except requests.HTTPError as e:
+        code = e.response.status_code if e.response is not None else "HTTP"
+        if code in (401, 403): console.print(f"[bad]This API key is invalid or has no access ({code}). No model tests were run.[/bad]")
+        elif code == 429: console.print("[bad]This API key/provider is rate-limited (429). No model tests were run.[/bad]")
+        else: console.print(f"[bad]Provider request failed ({code}). Check the key and Base URL.[/bad]")
     except Exception as e:
         console.print(f"[bad]Could not load models:[/bad] {e}")
 
