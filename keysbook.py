@@ -45,6 +45,7 @@ PROVIDERS = [
     ("Agnes", ""), ("Featherless", "https://api.featherless.ai/v1"),
     ("Chutes", "https://llm.chutes.ai/v1"), ("W&B Inference", "https://api.inference.wandb.ai/v1"),
     ("ZenMux", "https://zenmux.ai/api/v1"), ("Kiro", ""),
+    ("Kilo", "https://api.kilo.ai/api/gateway"),
     ("TokenRouter", "https://api.tokenrouter.com/v1"),
     ("NaraRoute", "https://router.bynara.id/v1"),
     ("NVIDIA NIM", "https://integrate.api.nvidia.com/v1"),
@@ -62,8 +63,9 @@ PROVIDERS = [
     ("Cloudflare Workers AI", ""),
     ("Gemini", "https://generativelanguage.googleapis.com/v1beta/openai"),
     ("Groq", "https://api.groq.com/openai/v1"), ("SambaNova", "https://api.sambanova.ai/v1"),
-    ("Kilo", ""), ("Cerebras", "https://api.cerebras.ai/v1"),
-    ("Ollama Local", "http://127.0.0.1:11434/v1"),
+    ("Cerebras", "https://api.cerebras.ai/v1"),
+    ("Ollama Local", "http://127.0.0.1:11434/api"),
+    ("Ollama Cloud", "https://ollama.com/api"),
     ("Custom Provider", ""),
 ]
 
@@ -128,6 +130,12 @@ def normalize(url: str) -> str:
 
 def fetch_models(item: dict) -> list[str]:
     base = normalize(item["base_url"])
+    if item["provider"] in ("Ollama Local", "Ollama Cloud"):
+        headers = {"Accept": "application/json"}
+        if item["api_key"]: headers["Authorization"] = "Bearer " + item["api_key"]
+        r = requests.get(urljoin(base, "tags"), headers=headers, timeout=20)
+        r.raise_for_status()
+        return sorted([str(x.get("name", x.get("model", ""))) for x in r.json().get("models", []) if x.get("name", x.get("model"))])
     if item["provider"] == "Anthropic":
         headers = {"x-api-key": item["api_key"], "anthropic-version": "2023-06-01", "Accept": "application/json"}
     else:
@@ -170,7 +178,12 @@ def add_key(items):
 def test_model(item: dict, model: str) -> tuple[bool, str]:
     """Send one minimal request. This verifies actual inference access, not just listing access."""
     base = normalize(item["base_url"])
-    if item["provider"] == "Anthropic":
+    if item["provider"] in ("Ollama Local", "Ollama Cloud"):
+        url = urljoin(base, "chat")
+        headers = {"content-type": "application/json"}
+        if item["api_key"]: headers["Authorization"] = "Bearer " + item["api_key"]
+        body = {"model": model, "messages": [{"role": "user", "content": "ping"}], "stream": False, "options": {"num_predict": 1}}
+    elif item["provider"] == "Anthropic":
         url = urljoin(base, "v1/messages")
         headers = {"x-api-key": item["api_key"], "anthropic-version": "2023-06-01", "content-type": "application/json"}
         body = {"model": model, "max_tokens": 1, "messages": [{"role": "user", "content": "ping"}]}
