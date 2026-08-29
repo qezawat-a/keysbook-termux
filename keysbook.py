@@ -191,8 +191,12 @@ def add_key(items):
 def fast_candidates(provider: str, models: list[str]) -> list[str]:
     preferred = PRIORITY_MODELS.get(provider, [])
     exact = [model for model in preferred if model in models]
+    if provider == "OpenRouter":
+        free = [model for model in models if model.endswith(":free")]
+        # The router is a documented zero-cost fallback and may not appear in /models.
+        exact = ["openrouter/free"] + free + exact
     remaining = [model for model in models if model not in exact]
-    return (exact + remaining)[:MAX_FAST_TESTS]
+    return list(dict.fromkeys(exact + remaining))[:MAX_FAST_TESTS]
 
 
 def test_model(item: dict, model: str) -> tuple[bool, str]:
@@ -227,13 +231,17 @@ def show_models(item):
         if not models:
             console.print("[bad]No models returned for this key.[/bad]"); return
         usable = []
+        failures = []
         candidates = fast_candidates(item["provider"], models)
         console.print(f"[muted]Fast check: testing up to {len(candidates)} likely models first; failed models will be hidden.[/muted]")
         for number, model in enumerate(candidates, 1):
-            with console.status(f"[accent]Testing {number}/{len(models)}[/accent] {model}"):
-                ok, _ = test_model(item, model)
+            with console.status(f"[accent]Testing {number}/{len(candidates)}[/accent] {model}"):
+                ok, detail = test_model(item, model)
             if ok: usable.append(model)
+            else: failures.append((model, detail))
         if not usable:
+            if failures:
+                console.print(f"[muted]First failure: {failures[0][0]} — {failures[0][1]}[/muted]")
             console.print("[bad]No usable models found. Rate-limited, unpaid, unauthorized, or failed models are hidden.[/bad]")
             return
         table = Table(title=f"{item['provider']} — Usable Models", header_style="bold bright_cyan", border_style="cyan")
