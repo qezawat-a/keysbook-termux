@@ -1,22 +1,17 @@
 #!/usr/bin/env python3
 """KeysBook: fast API key/model browser for Termux.
 
-Keys are encrypted at rest with a password-derived Fernet key.
+Keys are encrypted at rest with OpenSSL AES-256-CBC and PBKDF2.
 """
 from __future__ import annotations
-import base64, getpass, hashlib, json, os, secrets, subprocess, sys
+import base64, getpass, json, os, subprocess, sys
 from pathlib import Path
 from urllib.parse import urljoin
 
 try:
     import requests
 except ImportError:
-    print("Install dependency first: pip install requests cryptography")
-    raise
-try:
-    from cryptography.fernet import Fernet, InvalidToken
-except ImportError:
-    print("Install dependency first: pip install requests cryptography")
+    print("Install dependency first: pip install requests")
     raise
 
 APP_DIR = Path.home() / ".keysbook"
@@ -59,28 +54,36 @@ PROVIDERS = [
 ]
 
 
-def key_from_password(password: str, salt: bytes) -> bytes:
-    return base64.urlsafe_b64encode(hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 390000, 32))
+def _openssl_env(password: str) -> dict:
+    env = os.environ.copy()
+    env["KEYSBOOK_VAULT_PASS"] = password
+    return env
+
+
+def openssl_encrypt(text: str, password: str) -> str:
+    q = subprocess.run(["openssl", "enc", "-aes-256-cbc", "-pbkdf2", "-salt", "-a", "-pass", "env:KEYSBOOK_VAULT_PASS"], input=text, text=True, capture_output=True, env=_openssl_env(password))
+    if q.returncode != 0: raise RuntimeError(q.stderr.strip() or "OpenSSL encryption failed")
+    return q.stdout
+
+
+def openssl_decrypt(encoded: str, password: str) -> str:
+    p = subprocess.run(["openssl", "enc", "-d", "-aes-256-cbc", "-pbkdf2", "-a", "-pass", "env:KEYSBOOK_VAULT_PASS"], input=encoded, text=True, capture_output=True, env=_openssl_env(password))
+    if p.returncode != 0: raise ValueError("Wrong password or damaged vault")
+    return p.stdout
 
 
 def load_vault() -> list[dict]:
     if not VAULT.exists(): return []
     password = getpass.getpass("Vault password: ")
-    try:
-        raw = json.loads(VAULT.read_text())
-        f = Fernet(key_from_password(password, base64.b64decode(raw["salt"])))
-        return json.loads(f.decrypt(raw["data"].encode()).decode())
-    except (InvalidToken, KeyError, ValueError, json.JSONDecodeError):
+    try: return json.loads(openssl_decrypt(VAULT.read_text(), password))
+    except (ValueError, json.JSONDecodeError, OSError):
         print("Wrong password or damaged vault."); return []
 
 
 def save_vault(items: list[dict], password: str | None = None):
     APP_DIR.mkdir(mode=0o700, exist_ok=True)
     if password is None: password = getpass.getpass("Create vault password: ")
-    salt = secrets.token_bytes(16)
-    f = Fernet(key_from_password(password, salt))
-    payload = {"salt": base64.b64encode(salt).decode(), "data": f.encrypt(json.dumps(items).encode()).decode()}
-    VAULT.write_text(json.dumps(payload)); VAULT.chmod(0o600)
+    VAULT.write_text(openssl_encrypt(json.dumps(items), password)); VAULT.chmod(0o600)
 
 
 def clipboard(text: str):
