@@ -10,9 +10,23 @@ from urllib.parse import urljoin
 
 try:
     import requests
+    from rich.console import Console
+    from rich.panel import Panel
+    from rich.table import Table
+    from rich.prompt import Prompt
+    from rich.theme import Theme
 except ImportError:
-    print("Install dependency first: pip install requests")
+    print("Install dependencies first: pip install -r requirements.txt")
     raise
+
+THEME = Theme({
+    "title": "bold cyan",
+    "accent": "bold bright_cyan",
+    "ok": "bold green",
+    "bad": "bold red",
+    "muted": "dim",
+})
+console = Console(theme=THEME)
 
 APP_DIR = Path.home() / ".keysbook"
 VAULT = APP_DIR / "vault.json"
@@ -114,13 +128,19 @@ def fetch_models(item: dict) -> list[str]:
 
 
 def choose_provider() -> tuple[str, str]:
-    for i, (name, url) in enumerate(PROVIDERS, 1): print(f"{i:2}. {name:<26} {url or '[enter custom URL]'}")
+    table = Table(title="Available Providers", header_style="bold bright_cyan", border_style="cyan")
+    table.add_column("#", justify="right", style="yellow")
+    table.add_column("Provider", style="white")
+    table.add_column("Base URL", style="green")
+    for i, (name, url) in enumerate(PROVIDERS, 1):
+        table.add_row(str(i), name, url or "[custom URL]")
+    console.print(table)
     while True:
-        try: idx = int(input("Provider number: ")) - 1
+        try: idx = int(Prompt.ask("[accent]Provider number[/accent]")) - 1
         except ValueError: continue
         if 0 <= idx < len(PROVIDERS):
             name, url = PROVIDERS[idx]
-            if not url: url = input("Base URL: ").strip()
+            if not url: url = Prompt.ask("[accent]Base URL[/accent]").strip()
             return name, url
 
 
@@ -134,45 +154,94 @@ def add_key(items):
     show_models(items[-1])
 
 
+def test_model(item: dict, model: str) -> tuple[bool, str]:
+    """Send one minimal request. This verifies actual inference access, not just listing access."""
+    base = normalize(item["base_url"])
+    if item["provider"] == "Anthropic":
+        url = urljoin(base, "v1/messages")
+        headers = {"x-api-key": item["api_key"], "anthropic-version": "2023-06-01", "content-type": "application/json"}
+        body = {"model": model, "max_tokens": 1, "messages": [{"role": "user", "content": "ping"}]}
+    else:
+        url = urljoin(base, "chat/completions")
+        headers = {"Authorization": "Bearer " + item["api_key"], "content-type": "application/json"}
+        body = {"model": model, "messages": [{"role": "user", "content": "ping"}], "max_tokens": 1}
+    try:
+        r = requests.post(url, headers=headers, json=body, timeout=25)
+        if r.ok: return True, "Working"
+        try: detail = r.json().get("error", {}).get("message", r.reason)
+        except Exception: detail = r.reason
+        return False, str(detail)[:55]
+    except Exception as exc:
+        return False, str(exc)[:55]
+
+
 def show_models(item):
     try:
         models = fetch_models(item)
-        print(f"\n{item['provider']} — {len(models)} accessible model(s):")
-        for i, model in enumerate(models, 1): print(f"{i:3}. {model}")
-        if models:
-            while True:
-                choice = input("Model number to copy (Enter to return): ").strip()
-                if not choice: break
-                if choice.isdigit() and 1 <= int(choice) <= len(models): clipboard(models[int(choice)-1]); break
+        if not models:
+            console.print("[bad]No models returned for this key.[/bad]"); return
+        usable = []
+        console.print(f"[muted]Testing {len(models)} models with one minimal request each; failed models will be hidden.[/muted]")
+        for number, model in enumerate(models, 1):
+            with console.status(f"[accent]Testing {number}/{len(models)}[/accent] {model}"):
+                ok, _ = test_model(item, model)
+            if ok: usable.append(model)
+        if not usable:
+            console.print("[bad]No usable models found. Rate-limited, unpaid, unauthorized, or failed models are hidden.[/bad]")
+            return
+        table = Table(title=f"{item['provider']} — Usable Models", header_style="bold bright_cyan", border_style="cyan")
+        table.add_column("#", justify="right", style="yellow")
+        table.add_column("Model", style="white", overflow="ellipsis")
+        table.add_column("Status", style="green")
+        for i, model in enumerate(usable, 1): table.add_row(str(i), model, "Working")
+        console.print(table)
+        while True:
+            choice = Prompt.ask("[accent]Model number to copy | r=refresh | Enter=back[/accent]", default="").strip().lower()
+            if not choice: break
+            if choice == "r": return show_models(item)
+            if choice.isdigit() and 1 <= int(choice) <= len(usable): clipboard(usable[int(choice)-1]); break
     except Exception as e:
-        print(f"Could not load models: {e}")
+        console.print(f"[bad]Could not load models:[/bad] {e}")
+
+
+def key_table(items):
+    table = Table(title="Saved API Keys", header_style="bold bright_cyan", border_style="cyan")
+    table.add_column("#", justify="right", style="yellow")
+    table.add_column("Label", style="white")
+    table.add_column("Provider", style="cyan")
+    table.add_column("Base URL", style="green")
+    table.add_column("Key", style="yellow")
+    for i, x in enumerate(items, 1):
+        table.add_row(str(i), x["label"], x["provider"], x["base_url"], x["api_key"][:4] + "…")
+    console.print(table)
 
 
 def main():
-    print("\nKeysBook — fast API keys and models for Termux\n")
+    console.print(Panel.fit("[title]KeysBook[/title]\n[muted]Fast API Model Browser for Termux[/muted]", border_style="cyan"))
     items = load_vault()
     while True:
-        print("\n1) Add API key   2) List saved keys   3) Test/show models   4) Copy key   5) Copy Base URL   6) Delete   0) Exit")
-        c = input("Select: ").strip()
-        if c == "1": add_key(items); items = load_vault()
+        console.print(Panel("[accent]1[/accent] Add API key    [accent]2[/accent] List keys    [accent]3[/accent] Models\n[accent]4[/accent] Copy key       [accent]5[/accent] Copy URL     [accent]6[/accent] Delete\n[accent]0[/accent] Exit", title="[title]Main Menu[/title]", border_style="cyan"))
+        c = Prompt.ask("[accent]Select[/accent]", default="0").strip()
+        if c == "1": add_key(items)
         elif c == "2":
-            for i, x in enumerate(items, 1): print(f"{i}. {x['label']} [{x['provider']}] — {x['base_url']} — {x['api_key'][:4]}…")
+            if items: key_table(items)
+            else: console.print("[muted]No saved keys.[/muted]")
         elif c == "3":
-            if not items: print("No saved keys."); continue
-            for i, x in enumerate(items, 1): print(f"{i}. {x['label']} [{x['provider']}]")
-            try: show_models(items[int(input("Key number: "))-1])
-            except (ValueError, IndexError): print("Invalid selection.")
+            if not items: console.print("[muted]No saved keys.[/muted]"); continue
+            key_table(items)
+            try: show_models(items[int(Prompt.ask("Key number"))-1])
+            except (ValueError, IndexError): console.print("[bad]Invalid selection.[/bad]")
         elif c in ("4", "5"):
-            if not items: print("No saved keys."); continue
-            for i, x in enumerate(items, 1): print(f"{i}. {x['label']} [{x['provider']}]")
+            if not items: console.print("[muted]No saved keys.[/muted]"); continue
+            key_table(items)
             try:
-                x = items[int(input("Key number: "))-1]; clipboard(x["api_key"] if c == "4" else x["base_url"])
-            except (ValueError, IndexError): print("Invalid selection.")
+                x = items[int(Prompt.ask("Key number"))-1]; clipboard(x["api_key"] if c == "4" else x["base_url"])
+            except (ValueError, IndexError): console.print("[bad]Invalid selection.[/bad]")
         elif c == "6":
             for i, x in enumerate(items, 1): print(f"{i}. {x['label']} [{x['provider']}]")
             try:
-                del items[int(input("Delete number: "))-1]; save_vault(items, getpass.getpass("Vault password to save: "))
-            except (ValueError, IndexError): print("Invalid selection.")
+                del items[int(Prompt.ask("Delete number"))-1]; save_vault(items, getpass.getpass("Vault password to save: "))
+            except (ValueError, IndexError): console.print("[bad]Invalid selection.[/bad]")
         elif c == "0": break
 
 if __name__ == "__main__": main()
