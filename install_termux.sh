@@ -1,8 +1,8 @@
 #!/data/data/com.termux/files/usr/bin/bash
 set -e
-pkg update -y
-pkg install python termux-api -y
-python -m pip install --upgrade pip
+# Python is usually already installed in Termux. Install it only if needed.
+command -v python >/dev/null 2>&1 || pkg install python -y
 python -m pip install -r requirements.txt
 chmod +x keysbook.py
 printf '\nKeysBook installed. Run: python keysbook.py\n'
+printf 'Clipboard support is optional: install Termux:API separately if desired.\n'

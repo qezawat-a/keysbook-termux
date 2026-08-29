@@ -5,13 +5,19 @@ KeysBook یک برنامهٔ سریع Python برای نگهداری API/PAT Key
 ## نصب در Termux
 
 ```bash
-pkg update -y
-pkg install python termux-api -y
+pkg install python -y   # فقط اگر Python نصب نیست
 pip install -r requirements.txt
 python keysbook.py
 ```
 
-برای کارکردن Copy به کلیپ‌بورد، برنامهٔ **Termux:API** را نیز از منبع سازگار با Termux نصب کن. اگر نصب نباشد، برنامه مقدار را در ترمینال نمایش می‌دهد تا دستی کپی شود.
+یا از اسکریپت کوتاه استفاده کن:
+
+```bash
+bash install_termux.sh
+python keysbook.py
+```
+
+برای Copy مستقیم به کلیپ‌بورد، نصب جداگانهٔ **Termux:API** اختیاری است. اگر نصب نباشد، برنامه مقدار را در ترمینال نمایش می‌دهد تا دستی کپی شود. بنابراین نصب اولیه بدون Termux:API هم انجام می‌شود.
 
 ## روند استفاده
 
