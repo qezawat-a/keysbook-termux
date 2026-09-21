@@ -1,0 +1,1 @@
+keysbook	https://github.com/qezawat-a/keysbook-termux

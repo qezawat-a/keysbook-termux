@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "projects": [
+    {
+      "id": "keysbook-termux",
+      "name": "keysbook-termux",
+      "root": "",
+      "buildSystem": "native",
+      "settings": {},
+      "modules": [
+        {
+          "id": "keysbook",
+          "name": "keysbook",
+          "dir": "keysbook"
+        }
+      ],
+      "libraries": []
+    }
+  ]
+}
