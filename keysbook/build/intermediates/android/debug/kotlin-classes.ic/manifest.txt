@@ -1,0 +1,5 @@
+ctx	ead72c2381790a3b155bd057bb4140cf
+s	/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/projects/keysbook-termux/keysbook/src/main/kotlin/com/keysbook/app/MainActivity.kt	82c18501b5747f8511e0a7ed5ce8827b
+o	/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/projects/keysbook-termux/keysbook/src/main/kotlin/com/keysbook/app/MainActivity.kt	com/keysbook/app/MainActivity.class
+a	com/keysbook/app/MainActivity.class	92cc8ab0435edc56edaa3d2039d4aa12
+j	/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/projects/keysbook-termux/keysbook/build/intermediates/android/debug/gen/com/keysbook/app/R.java	1067	1793665423854	c079e0b4f54460863a96877a7253c1b8
