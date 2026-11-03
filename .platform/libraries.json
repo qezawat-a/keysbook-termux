@@ -1,4 +1,37 @@
 {
   "version": 1,
-  "libraries": []
+  "libraries": [
+    {
+      "name": "androidx.databinding:viewbinding:8.7.3@module:keysbook",
+      "kind": "AAR",
+      "classes": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/databinding/viewbinding/8.7.3/viewbinding-8.7.3-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/annotation/annotation/1.0.0/annotation-1.0.0.jar"
+      ],
+      "sources": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/databinding/viewbinding/8.7.3/viewbinding-8.7.3-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/annotation/annotation/1.0.0/annotation-1.0.0-sources.jar"
+      ]
+    },
+    {
+      "name": "kotlin-stdlib",
+      "kind": "JAR",
+      "classes": [
+        ".platform/kotlin-stdlib-2.4.0.jar"
+      ],
+      "sources": []
+    },
+    {
+      "name": "org.jetbrains.kotlin:kotlin-stdlib:2.1.0@module:keysbook",
+      "kind": "JAR",
+      "classes": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlin/kotlin-stdlib/2.1.0/kotlin-stdlib-2.1.0.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/annotations/13.0/annotations-13.0.jar"
+      ],
+      "sources": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlin/kotlin-stdlib/2.1.0/kotlin-stdlib-2.1.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/annotations/13.0/annotations-13.0-sources.jar"
+      ]
+    }
+  ]
 }

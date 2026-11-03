@@ -3,10 +3,13 @@ package com.keysbook.app
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.ClipData
+import android.content.ClipDescription
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -75,11 +78,35 @@ class KeysActivity : Activity() {
             .show()
     }
 
-    private fun copyKey(entry: Vault.Entry) {
+    /**
+     * Copies the full stored key.
+     *
+     * The entry is re-read from the vault by id at click time instead of using the
+     * captured object, so a recycled list row can never copy the wrong key. The
+     * confirmation shows a masked form of the value so it is obvious that the
+     * whole secret (not the masked label on screen) went to the clipboard.
+     */
+    private fun copyKey(entryId: String) {
+        val stored = vault.find(entryId)
+        val apiKey = stored?.apiKey.orEmpty()
+        if (apiKey.isBlank()) {
+            toast(getString(R.string.copy_empty))
+            return
+        }
+
         val cm = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        cm.setPrimaryClip(ClipData.newPlainText("KeysBook key", entry.apiKey))
-        Toast.makeText(this, R.string.copied, Toast.LENGTH_SHORT).show()
+        // EXTRA_IS_SENSITIVE keeps the secret out of the clipboard preview on
+        // Android 13+, matching the Python app never printing full keys.
+        val clip = ClipData.newPlainText(getString(R.string.copied_label), apiKey)
+        val extras = android.os.PersistableBundle()
+        extras.putBoolean(android.content.ClipDescription.EXTRA_IS_SENSITIVE, true)
+        clip.description.extras = extras
+        cm.setPrimaryClip(clip)
+
+        toast(getString(R.string.copied_full, AppState.maskKey(apiKey)))
     }
+
+    private fun toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 
     private inner class KeyAdapter : BaseAdapter() {
         override fun getCount(): Int = vault.entries.size
@@ -95,9 +122,15 @@ class KeysActivity : Activity() {
             view.findViewById<TextView>(R.id.label).text = entry.label
             view.findViewById<TextView>(R.id.url).text =
                 entry.baseUrl.ifBlank { getString(R.string.custom_needs_url) }
-            view.findViewById<TextView>(R.id.key).text = AppState.maskKey(entry.apiKey)
+            val keyText = view.findViewById<TextView>(R.id.key)
+            keyText.text = AppState.maskKey(entry.apiKey)
 
-            view.findViewById<Button>(R.id.copy).setOnClickListener { copyKey(entry) }
+            view.findViewById<Button>(R.id.copy).setOnClickListener { copyKey(entry.id) }
+            // Long-pressing the key itself is a second, larger copy target.
+            keyText.setOnLongClickListener {
+                copyKey(entry.id)
+                true
+            }
             view.findViewById<Button>(R.id.edit).setOnClickListener {
                 startActivity(
                     Intent(this@KeysActivity, EditKeyActivity::class.java)

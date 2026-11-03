@@ -25,6 +25,13 @@ class EditKeyActivity : Activity() {
 
     private var editingId: String? = null
 
+    /**
+     * Name of the provider currently reflected in the Base URL field. Spinner
+     * callbacks fire on layout (including while restoring a saved key), so the
+     * URL is only overwritten when the provider actually changes.
+     */
+    private var lastProvider: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_key)
@@ -76,7 +83,9 @@ class EditKeyActivity : Activity() {
         title.setText(R.string.edit_key)
         val idx = Providers.ALL.indexOfFirst { it.name == e.provider }
         if (idx >= 0) {
-            skipNextAutofill = true
+            // Record the provider before selecting it so the posted callback
+            // treats this as a no-op and leaves the saved Base URL intact.
+            lastProvider = e.provider
             provider.setSelection(idx)
         }
         label.setText(e.label)

@@ -39,6 +39,9 @@
     <string name="copy_key">Copy key</string>
     <string name="view_models">View models</string>
     <string name="copied">API key copied</string>
+    <string name="copied_label">KeysBook key</string>
+    <string name="copy_empty">This key is empty.</string>
+    <string name="copied_full">Copied key %1$s</string>
     <string name="delete_confirm_title">Delete key?</string>
     <string name="delete_confirm_msg">This removes the key from the vault.</string>
 

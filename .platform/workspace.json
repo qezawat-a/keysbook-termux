@@ -5,7 +5,7 @@
       "id": "keysbook-termux",
       "name": "keysbook-termux",
       "root": "",
-      "buildSystem": "native",
+      "buildSystem": "gradle-compat",
       "settings": {},
       "modules": [
         {

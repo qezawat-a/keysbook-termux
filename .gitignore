@@ -5,3 +5,19 @@ __pycache__/
 *.env
 .keysbook/
 vault.json
+
+# Gradle / Android build output
+.gradle/
+build/
+local.properties
+*.iml
+.idea/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Never commit signing material
+*.jks
+*.keystore
+keystore.properties
+!debug.keystore

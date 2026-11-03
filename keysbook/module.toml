@@ -42,7 +42,7 @@ java = ["src/test/java", "src/test/kotlin"]
 resources = ["src/test/resources"]
 
 [dependencies]
-implementation = ["kotlin-stdlib"]
+implementation = ["org.jetbrains.kotlin:kotlin-stdlib:2.1.0"]
 
 [android]
 namespace = "com.keysbook.app"
@@ -51,12 +51,9 @@ minSdk = 26
 targetSdk = 34
 manifest = "src/main/AndroidManifest.xml"
 versionCode = 1
-versionName = "1.0"
+versionName = ") as String?) ?: "
 isApplication = true
 manifestPlaceholders = []
 buildConfigFields = []
 buildTypes = [{ name = "debug", debuggable = true, minifyEnabled = false, shrinkResources = false }, { name = "release", debuggable = false, minifyEnabled = false, shrinkResources = false, proguardFiles = ["proguard-android-optimize.txt", "proguard-rules.pro"] }]
-compose = false
-serialization = false
 buildConfig = false
-kspProcessors = []
