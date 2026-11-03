@@ -2,6 +2,15 @@
 <resources>
     <color name="primary">#FF1B5E20</color>
     <color name="primary_dark">#FF003300</color>
+    <color name="primary_light">#FF2E7D32</color>
     <color name="accent">#FF76FF03</color>
+
+    <color name="bg">#FF0E130F</color>
+    <color name="card">#FF16261A</color>
+    <color name="stroke">#FF2E4A33</color>
+    <color name="text">#FFE8F5E9</color>
+    <color name="text_muted">#FF9CB89C</color>
+    <color name="danger">#FFEF5350</color>
+
     <color name="ic_launcher_background">#FF1B5E20</color>
 </resources>
