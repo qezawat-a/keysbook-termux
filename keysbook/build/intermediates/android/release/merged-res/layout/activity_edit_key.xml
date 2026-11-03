@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/new_key"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/accent"
+            android:paddingBottom="18dp" />
+
+        <TextView
+            style="@style/FieldLabel"
+            android:text="@string/provider" />
+
+        <Spinner
+            android:id="@+id/provider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_input"
+            android:padding="12dp" />
+
+        <TextView
+            style="@style/FieldLabel"
+            android:layout_marginTop="14dp"
+            android:text="@string/label" />
+
+        <EditText
+            android:id="@+id/label"
+            style="@style/FieldInput"
+            android:hint="@string/label"
+            android:inputType="text"
+            android:importantForAutofill="no"
+            android:singleLine="true" />
+
+        <TextView
+            style="@style/FieldLabel"
+            android:layout_marginTop="14dp"
+            android:text="@string/base_url" />
+
+        <EditText
+            android:id="@+id/url"
+            style="@style/FieldInput"
+            android:hint="https://api.example.com/v1"
+            android:inputType="textUri"
+            android:importantForAutofill="no"
+            android:singleLine="true" />
+
+        <TextView
+            style="@style/FieldLabel"
+            android:layout_marginTop="14dp"
+            android:text="@string/api_key" />
+
+        <EditText
+            android:id="@+id/key"
+            style="@style/FieldInput"
+            android:hint="sk-..."
+            android:inputType="textPassword"
+            android:importantForAutofill="no"
+            android:singleLine="true" />
+
+        <TextView
+            style="@style/FieldLabel"
+            android:layout_marginTop="14dp"
+            android:text="@string/notes" />
+
+        <EditText
+            android:id="@+id/notes"
+            style="@style/FieldInput"
+            android:hint="@string/notes"
+            android:inputType="textMultiLine"
+            android:importantForAutofill="no"
+            android:minLines="3"
+            android:gravity="top" />
+
+        <Button
+            android:id="@+id/save"
+            style="@style/PrimaryButton"
+            android:layout_marginTop="22dp"
+            android:text="@string/save" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_button_outline"
+            android:padding="14dp"
+            android:textSize="15sp"
+            android:textColor="@color/accent"
+            android:text="@string/cancel" />
+
+    </LinearLayout>
+</ScrollView>

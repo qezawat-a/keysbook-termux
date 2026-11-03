@@ -19,6 +19,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".KeysActivity"
+            android:exported="false"
+            android:label="@string/keys_title" />
+
+        <activity
+            android:name=".EditKeyActivity"
+            android:exported="false"
+            android:label="@string/new_key"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ModelsActivity"
+            android:exported="false"
+            android:label="@string/models_label" />
     </application>
 
 </manifest>

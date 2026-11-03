@@ -43,6 +43,7 @@
     <string name="delete_confirm_msg">This removes the key from the vault.</string>
 
     <string name="models_title">%1$s models</string>
+    <string name="models_label">Models</string>
     <string name="loading_models">Loading models…</string>
     <string name="no_models">No models returned for this key.</string>
     <string name="tap_model_hint">Tap a model to test it.</string>

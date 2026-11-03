@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_screen"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="28dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="38sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFFFF" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/tagline"
+            android:textSize="14sp"
+            android:textColor="#B3FFFFFF" />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:gravity="center"
+            android:textSize="13sp"
+            android:textColor="#B3FFFFFF"
+            android:text="@string/no_vault_yet" />
+
+        <TextView
+            style="@style/FieldLabel"
+            android:layout_marginTop="20dp"
+            android:text="@string/unlock_title" />
+
+        <EditText
+            android:id="@+id/password"
+            style="@style/FieldInput"
+            android:hint="@string/password_hint"
+            android:inputType="textPassword"
+            android:importantForAutofill="no"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/primary"
+            style="@style/PrimaryButton"
+            android:layout_marginTop="18dp"
+            android:text="@string/unlock" />
+
+        <Button
+            android:id="@+id/create"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_button_outline"
+            android:padding="14dp"
+            android:textSize="15sp"
+            android:textColor="@color/accent"
+            android:text="@string/create_vault" />
+
+    </LinearLayout>
+</ScrollView>
