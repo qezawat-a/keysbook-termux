@@ -42,7 +42,7 @@ java = ["src/test/java", "src/test/kotlin"]
 resources = ["src/test/resources"]
 
 [dependencies]
-implementation = ["org.jetbrains.kotlin:kotlin-stdlib:2.1.0"]
+implementation = ["org.jetbrains.kotlin:kotlin-stdlib:2.1.0", "kotlin-stdlib"]
 
 [android]
 namespace = "com.keysbook.app"
@@ -51,7 +51,7 @@ minSdk = 26
 targetSdk = 34
 manifest = "src/main/AndroidManifest.xml"
 versionCode = 1
-versionName = ") as String?) ?: "
+versionName = "1.0"
 isApplication = true
 manifestPlaceholders = []
 buildConfigFields = []

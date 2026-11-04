@@ -3,21 +3,14 @@ package com.keysbook.app
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.ClipData
-import android.content.ClipDescription
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.Button
-import android.widget.ListView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 
 /** Key list screen: the Python app's main menu table. */
 class KeysActivity : Activity() {
@@ -86,6 +79,14 @@ class KeysActivity : Activity() {
      * confirmation shows a masked form of the value so it is obvious that the
      * whole secret (not the masked label on screen) went to the clipboard.
      */
+    /**
+     * Copies the full stored key.
+     *
+     * The entry is re-read from the vault by id at click time instead of using the
+     * captured object, so a recycled list row can never copy the wrong key. The
+     * write is read back before reporting success; if the system refuses it, the
+     * key is shown pre-selected so it can still be copied by hand.
+     */
     private fun copyKey(entryId: String) {
         val stored = vault.find(entryId)
         val apiKey = stored?.apiKey.orEmpty()
@@ -95,15 +96,35 @@ class KeysActivity : Activity() {
         }
 
         val cm = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        // EXTRA_IS_SENSITIVE keeps the secret out of the clipboard preview on
-        // Android 13+, matching the Python app never printing full keys.
+        // The clip is deliberately NOT flagged sensitive: a sensitive clip shows
+        // "content hidden" on Android 13+, which makes a good copy look broken.
         val clip = ClipData.newPlainText(getString(R.string.copied_label), apiKey)
-        val extras = android.os.PersistableBundle()
-        extras.putBoolean(android.content.ClipDescription.EXTRA_IS_SENSITIVE, true)
-        clip.description.extras = extras
-        cm.setPrimaryClip(clip)
+        val wrote = runCatching { cm.setPrimaryClip(clip) }.isSuccess
 
-        toast(getString(R.string.copied_full, AppState.maskKey(apiKey)))
+        val landed = wrote && runCatching {
+            cm.primaryClip?.getItemAt(0)?.text?.toString() == apiKey
+        }.getOrDefault(false)
+
+        if (landed) {
+            toast(getString(R.string.copied_full, AppState.maskKey(apiKey)))
+        } else {
+            showKeyFallback(apiKey)
+        }
+    }
+
+    /** Manual copy path for devices that reject clipboard writes. */
+    private fun showKeyFallback(apiKey: String) {
+        val field = EditText(this)
+        field.setText(apiKey)
+        field.setSelection(0, apiKey.length)
+        field.isSingleLine = false
+        field.setPadding(48, 32, 48, 32)
+        AlertDialog.Builder(this)
+            .setTitle(R.string.copy_key)
+            .setMessage(R.string.copy_manual_hint)
+            .setView(field)
+            .setPositiveButton(R.string.ok, null)
+            .show()
     }
 
     private fun toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
