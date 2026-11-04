@@ -3,10 +3,10 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
-// Release signing is supplied by CI (or a local keystore.properties) so no key
-// material ever lives in the repository.
-val keystoreFile = System.getenv("KEYSTORE_FILE")
-val hasSigning = keystoreFile != null && file(keystoreFile).exists()
+val ciKeystoreFile = System.getenv("KEYSTORE_FILE")
+val ciHasSigning = ciKeystoreFile != null && file(ciKeystoreFile).exists()
+val localKeystoreProps = rootProject.file("keystore.properties")
+val localHasSigning = localKeystoreProps.canRead()
 
 android {
     namespace = "com.keysbook.app"
@@ -20,13 +20,20 @@ android {
         versionName = System.getenv("VERSION_NAME") ?: "1.0"
     }
 
-    if (hasSigning) {
-        signingConfigs {
+    signingConfigs {
+        if (ciHasSigning) {
             create("release") {
-                storeFile = file(keystoreFile!!)
+                storeFile = file(ciKeystoreFile!!)
                 storePassword = System.getenv("KEYSTORE_PASSWORD")
                 keyAlias = System.getenv("KEY_ALIAS")
                 keyPassword = System.getenv("KEY_PASSWORD")
+            }
+        } else if (localHasSigning) {
+            create("release") {
+                storeFile = rootProject.file("debug.keystore")
+                storePassword = "android"
+                keyAlias = "androiddebugkey"
+                keyPassword = "android"
             }
         }
     }
@@ -34,6 +41,7 @@ android {
     buildTypes {
         debug {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
         }
         release {
             isMinifyEnabled = false
@@ -41,7 +49,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            if (hasSigning) {
+            if (ciHasSigning || localHasSigning) {
                 signingConfig = signingConfigs.getByName("release")
             }
         }
