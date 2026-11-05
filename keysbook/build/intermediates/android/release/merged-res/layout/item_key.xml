@@ -67,6 +67,18 @@
             android:text="@string/copy_key" />
 
         <Button
+            android:id="@+id/copy_url"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/bg_button_outline"
+            android:padding="8dp"
+            android:textSize="12sp"
+            android:textColor="@color/accent"
+            android:text="@string/copy_url" />
+
+        <Button
             android:id="@+id/models"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
