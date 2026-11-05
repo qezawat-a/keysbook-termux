@@ -3,13 +3,22 @@ version = 2
 [module]
 type = "android-app"
 name = "keysbook"
-languageLevel = "JAVA_17"
+languageLevel = "JAVA_21"
 output = "build/classes"
 
 [sourceSets.androidTest]
 scope = "TEST_IMPLEMENTATION"
 java = ["src/androidTest/java", "src/androidTest/kotlin"]
 resources = ["src/androidTest/resources"]
+
+[sourceSets.buildConfig]
+scope = "IMPLEMENTATION"
+java = ["build/build-config/kotlin"]
+
+[sourceSets.composeResources]
+scope = "IMPLEMENTATION"
+java = ["build/compose-resources/kotlin"]
+resources = ["build/compose-resources/resources"]
 
 [sourceSets.debug]
 scope = "IMPLEMENTATION"
@@ -22,27 +31,29 @@ resources = ["src/debug/resources"]
 
 [sourceSets.main]
 scope = "IMPLEMENTATION"
+java = ["src/androidMain/kotlin", "src/commonMain/kotlin", "src/main/java", "src/main/kotlin"]
+res = ["src/androidMain/res", "src/main/res"]
 aidl = ["src/main/aidl"]
 assets = ["src/main/assets"]
-java = ["src/main/java", "src/main/kotlin"]
 jniLibs = ["src/main/jniLibs"]
-res = ["src/main/res"]
 resources = ["src/main/resources"]
 
 [sourceSets.release]
 scope = "IMPLEMENTATION"
+aidl = ["src/release/aidl"]
 assets = ["src/release/assets"]
 java = ["src/release/java", "src/release/kotlin"]
+jniLibs = ["src/release/jniLibs"]
 res = ["src/release/res"]
 resources = ["src/release/resources"]
 
 [sourceSets.test]
 scope = "TEST_IMPLEMENTATION"
-java = ["src/test/java", "src/test/kotlin"]
+java = ["src/commonTest/kotlin", "src/test/java", "src/test/kotlin"]
 resources = ["src/test/resources"]
 
 [dependencies]
-implementation = ["org.jetbrains.kotlin:kotlin-stdlib:2.1.0"]
+implementation = ["org.jetbrains.kotlin:kotlin-stdlib:2.1.0", "androidx.activity:activity-compose:1.13.0", "androidx.databinding:viewbinding:8.7.3", "org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1", "com.google.firebase:firebase-analytics:", "com.google.android.gms:play-services-auth:21.2.0", "com.google.android.gms:play-services-maps:19.0.0", "com.google.android.gms:play-services-location:21.3.0", "kotlin-stdlib"]
 
 [android]
 namespace = "com.keysbook.app"
@@ -56,4 +67,21 @@ isApplication = true
 manifestPlaceholders = []
 buildConfigFields = []
 buildTypes = [{ name = "debug", debuggable = true, minifyEnabled = false, shrinkResources = false }, { name = "release", debuggable = false, minifyEnabled = false, shrinkResources = false, proguardFiles = ["proguard-android-optimize.txt", "proguard-rules.pro"] }]
-buildConfig = false
+buildConfig = true
+
+[composeResources]
+package = "com.keysbook.app.generated.resources"
+roots = ["src/main/composeResources"]
+
+[kotlin]
+commonSourceRoots = ["src/commonMain/kotlin", "build/compose-resources/kotlin", "build/build-config/kotlin"]
+activeTarget = "android"
+targets = [{ name = "android", platform = "android", type = "android-app", roots = ["src/androidMain/kotlin", "src/androidMain/res|android-res", "src/main/aidl|aidl", "src/main/assets|assets", "src/main/java", "src/main/jniLibs|jni-libs", "src/main/kotlin", "src/main/res|android-res", "src/main/resources|resource"], dependencies = ["IMPLEMENTATION lib:org.jetbrains.kotlin:kotlin-stdlib:2.1.0", "IMPLEMENTATION lib:androidx.activity:activity-compose:1.13.0", "IMPLEMENTATION lib:androidx.databinding:viewbinding:8.7.3", "IMPLEMENTATION lib:org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1", "IMPLEMENTATION lib:org.jetbrains.compose.components:components-resources:1.11.1"], facets = { android = { namespace = "com.keysbook.app", compileSdk = 36, minSdk = 24, targetSdk = 36, manifest = "src/androidMain/AndroidManifest.xml", versionCode = 1, versionName = "1.0", isApplication = true, manifestPlaceholders = [], buildConfigFields = [], buildTypes = [{ name = "debug", debuggable = true, minifyEnabled = false, shrinkResources = false }, { name = "release", debuggable = false, minifyEnabled = false, shrinkResources = false, proguardFiles = ["proguard-android-optimize.txt", "proguard-rules.pro"] }] } } }, { name = "jvm", platform = "jvm", type = "java-lib", roots = ["src/desktopMain/kotlin", "src/desktopMain/resources|resource"] }]
+
+[kotlin.shared]
+roots = ["src/commonMain/kotlin"]
+testRoots = ["src/commonTest/kotlin"]
+
+[kotlinBuildConfig]
+package = "com.keysbook.app"
+fields = []

@@ -2,15 +2,222 @@
   "version": 1,
   "libraries": [
     {
+      "name": "androidx.activity:activity-compose:1.13.0@module:keysbook",
+      "kind": "AAR",
+      "classes": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/activity/activity-compose/1.13.0/activity-compose-1.13.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/activity/activity/1.13.0/activity-1.13.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/runtime/runtime-android/1.9.2/runtime-android-1.9.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/runtime/runtime-saveable-android/1.9.2/runtime-saveable-android-1.9.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/ui/ui-android/1.9.2/ui-android-1.9.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/core/core-ktx/1.18.0/core-ktx-1.18.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-viewmodel-android/2.9.4/lifecycle-viewmodel-android-2.9.4-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/navigationevent/navigationevent-compose-android/1.0.0/navigationevent-compose-android-1.0.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-common-jvm/2.9.4/lifecycle-common-jvm-2.9.4.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-runtime-android/2.9.4/lifecycle-runtime-android-2.9.4-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-runtime-compose-android/2.9.4/lifecycle-runtime-compose-android-2.9.4-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/savedstate/savedstate-android/1.3.3/savedstate-android-1.3.3-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.9.0/kotlinx-coroutines-core-jvm-1.9.0.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/annotation/annotation-jvm/1.9.1/annotation-jvm-1.9.1.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/core/core-viewtree/1.0.0/core-viewtree-1.0.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-viewmodel-savedstate-android/2.9.4/lifecycle-viewmodel-savedstate-android-2.9.4-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/navigationevent/navigationevent-android/1.0.0/navigationevent-android-1.0.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/profileinstaller/profileinstaller/1.4.0/profileinstaller-1.4.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/tracing/tracing/1.2.0/tracing-1.2.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/annotation/annotation-experimental/1.4.1/annotation-experimental-1.4.1-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlinx/kotlinx-coroutines-android/1.9.0/kotlinx-coroutines-android-1.9.0.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/collection/collection-jvm/1.5.0/collection-jvm-1.5.0.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/runtime/runtime-annotation-android/1.9.2/runtime-annotation-android-1.9.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/savedstate/savedstate-compose-android/1.3.3/savedstate-compose-android-1.3.3-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/ui/ui-geometry-android/1.9.2/ui-geometry-android-1.9.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/ui/ui-graphics-android/1.9.2/ui-graphics-android-1.9.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/ui/ui-text-android/1.9.2/ui-text-android-1.9.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/ui/ui-unit-android/1.9.2/ui-unit-android-1.9.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/ui/ui-util-android/1.9.2/ui-util-android-1.9.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/autofill/autofill/1.0.0/autofill-1.0.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-common-java8/2.9.4/lifecycle-common-java8-2.9.4.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/activity/activity-ktx/1.13.0/activity-ktx-1.13.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/core/core/1.18.0/core-1.18.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/customview/customview-poolingcontainer/1.0.0/customview-poolingcontainer-1.0.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/emoji2/emoji2/1.4.0/emoji2-1.4.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-viewmodel-ktx/2.9.4/lifecycle-viewmodel-ktx-2.9.4-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/savedstate/savedstate-ktx/1.3.3/savedstate-ktx-1.3.3-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/arch/core/core-common/2.2.0/core-common-2.2.0.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/arch/core/core-runtime/2.2.0/core-runtime-2.2.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-runtime-ktx-android/2.9.4/lifecycle-runtime-ktx-android-2.9.4-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.8.1/kotlinx-serialization-core-jvm-1.8.1.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-livedata-core/2.9.4/lifecycle-livedata-core-2.9.4-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/startup/startup-runtime/1.1.1/startup-runtime-1.1.1-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/guava/listenablefuture/1.0/listenablefuture-1.0.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/concurrent/concurrent-futures/1.1.0/concurrent-futures-1.1.0.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.8.20/kotlin-stdlib-jdk8-1.8.20.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/graphics/graphics-path/1.0.1/graphics-path-1.0.1-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/collection/collection-ktx/1.5.0/collection-ktx-1.5.0.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/versionedparcelable/versionedparcelable/1.1.1/versionedparcelable-1.1.1-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/interpolator/interpolator/1.0.0/interpolator-1.0.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-process/2.9.4/lifecycle-process-2.9.4-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.8.20/kotlin-stdlib-jdk7-1.8.20.jar"
+      ],
+      "sources": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/activity/activity-compose/1.13.0/activity-compose-1.13.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/activity/activity/1.13.0/activity-1.13.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/runtime/runtime-android/1.9.2/runtime-android-1.9.2-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/runtime/runtime-saveable-android/1.9.2/runtime-saveable-android-1.9.2-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/ui/ui-android/1.9.2/ui-android-1.9.2-samples-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/core/core-ktx/1.18.0/core-ktx-1.18.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-viewmodel/2.9.4/lifecycle-viewmodel-2.9.4-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/navigationevent/navigationevent-compose-android/1.0.0/navigationevent-compose-android-1.0.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-common-jvm/2.9.4/lifecycle-common-jvm-2.9.4-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-runtime/2.9.4/lifecycle-runtime-2.9.4-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-runtime-compose/2.9.4/lifecycle-runtime-compose-2.9.4-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/savedstate/savedstate/1.2.1/savedstate-1.2.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.9.0/kotlinx-coroutines-core-jvm-1.9.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/annotation/annotation-jvm/1.9.1/annotation-jvm-1.9.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/core/core-viewtree/1.0.0/core-viewtree-1.0.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-viewmodel-savedstate/2.6.1/lifecycle-viewmodel-savedstate-2.6.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/navigationevent/navigationevent-android/1.0.0/navigationevent-android-1.0.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/profileinstaller/profileinstaller/1.4.0/profileinstaller-1.4.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/tracing/tracing/1.2.0/tracing-1.2.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/annotation/annotation-experimental/1.4.1/annotation-experimental-1.4.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlinx/kotlinx-coroutines-android/1.9.0/kotlinx-coroutines-android-1.9.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/collection/collection-jvm/1.5.0/collection-jvm-1.5.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/runtime/runtime-annotation-android/1.9.2/runtime-annotation-android-1.9.2-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/savedstate/savedstate-compose-android/1.3.3/savedstate-compose-android-1.3.3-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/ui/ui-geometry-android/1.9.2/ui-geometry-android-1.9.2-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/ui/ui-graphics-android/1.9.2/ui-graphics-android-1.9.2-samples-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/ui/ui-text-android/1.9.2/ui-text-android-1.9.2-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/ui/ui-unit-android/1.9.2/ui-unit-android-1.9.2-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/ui/ui-util-android/1.9.2/ui-util-android-1.9.2-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/autofill/autofill/1.0.0/autofill-1.0.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-common-java8/2.3.0/lifecycle-common-java8-2.3.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jspecify/jspecify/1.0.0/jspecify-1.0.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/activity/activity-ktx/1.7.0/activity-ktx-1.7.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/core/core/1.18.0/core-1.18.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/customview/customview-poolingcontainer/1.0.0/customview-poolingcontainer-1.0.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/emoji2/emoji2/1.4.0/emoji2-1.4.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-viewmodel-ktx/2.8.7/lifecycle-viewmodel-ktx-2.8.7-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/savedstate/savedstate-ktx/1.2.1/savedstate-ktx-1.2.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/arch/core/core-common/2.2.0/core-common-2.2.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/arch/core/core-runtime/2.2.0/core-runtime-2.2.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-runtime-ktx-android/2.9.4/lifecycle-runtime-ktx-android-2.9.4-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.8.1/kotlinx-serialization-core-jvm-1.8.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-livedata-core/2.6.1/lifecycle-livedata-core-2.6.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/startup/startup-runtime/1.1.1/startup-runtime-1.1.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/guava/listenablefuture/1.0/listenablefuture-1.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/concurrent/concurrent-futures/1.1.0/concurrent-futures-1.1.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.8.20/kotlin-stdlib-jdk8-1.8.20-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/graphics/graphics-path/1.0.1/graphics-path-1.0.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/collection/collection-ktx/1.4.2/collection-ktx-1.4.2-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/versionedparcelable/versionedparcelable/1.1.1/versionedparcelable-1.1.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/interpolator/interpolator/1.0.0/interpolator-1.0.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/lifecycle/lifecycle-process/2.4.1/lifecycle-process-2.4.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.8.20/kotlin-stdlib-jdk7-1.8.20-sources.jar"
+      ]
+    },
+    {
       "name": "androidx.databinding:viewbinding:8.7.3@module:keysbook",
       "kind": "AAR",
       "classes": [
-        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/databinding/viewbinding/8.7.3/viewbinding-8.7.3-exploded/classes.jar",
-        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/annotation/annotation/1.0.0/annotation-1.0.0.jar"
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/databinding/viewbinding/8.7.3/viewbinding-8.7.3-exploded/classes.jar"
       ],
       "sources": [
-        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/databinding/viewbinding/8.7.3/viewbinding-8.7.3-sources.jar",
-        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/annotation/annotation/1.0.0/annotation-1.0.0-sources.jar"
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/databinding/viewbinding/8.7.3/viewbinding-8.7.3-sources.jar"
+      ]
+    },
+    {
+      "name": "com.google.android.gms:play-services-auth:21.2.0@module:keysbook",
+      "kind": "AAR",
+      "classes": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-auth/21.2.0/play-services-auth-21.2.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/fragment/fragment/1.5.7/fragment-1.5.7-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/loader/loader/1.1.0/loader-1.1.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-auth-api-phone/18.0.2/play-services-auth-api-phone-18.0.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-auth-base/18.0.10/play-services-auth-base-18.0.10-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-base/18.5.0/play-services-base-18.5.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-basement/18.4.0/play-services-basement-18.4.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-fido/20.0.1/play-services-fido-20.0.1-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-tasks/18.2.0/play-services-tasks-18.2.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/viewpager/viewpager/1.0.0/viewpager-1.0.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/customview/customview/1.0.0/customview-1.0.0-exploded/classes.jar"
+      ],
+      "sources": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/fragment/fragment/1.5.7/fragment-1.5.7-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/loader/loader/1.1.0/loader-1.1.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/viewpager/viewpager/1.0.0/viewpager-1.0.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/customview/customview/1.0.0/customview-1.0.0-sources.jar"
+      ]
+    },
+    {
+      "name": "com.google.android.gms:play-services-location:21.3.0@module:keysbook",
+      "kind": "AAR",
+      "classes": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-location/21.3.0/play-services-location-21.3.0-exploded/classes.jar"
+      ],
+      "sources": []
+    },
+    {
+      "name": "com.google.android.gms:play-services-maps:19.0.0@module:keysbook",
+      "kind": "AAR",
+      "classes": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-maps/19.0.0/play-services-maps-19.0.0-exploded/classes.jar"
+      ],
+      "sources": []
+    },
+    {
+      "name": "com.google.firebase:firebase-analytics:22.1.2@module:keysbook",
+      "kind": "AAR",
+      "classes": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/firebase/firebase-analytics/22.1.2/firebase-analytics-22.1.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-measurement/22.1.2/play-services-measurement-22.1.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-measurement-api/22.1.2/play-services-measurement-api-22.1.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-measurement-sdk/22.1.2/play-services-measurement-sdk-22.1.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-ads-identifier/18.0.0/play-services-ads-identifier-18.0.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-basement/18.4.0/play-services-basement-18.4.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-measurement-base/22.1.2/play-services-measurement-base-22.1.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-measurement-impl/22.1.2/play-services-measurement-impl-22.1.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-stats/17.0.2/play-services-stats-17.0.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-measurement-sdk-api/22.1.2/play-services-measurement-sdk-api-22.1.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-tasks/18.2.0/play-services-tasks-18.2.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/firebase/firebase-common/21.0.0/firebase-common-21.0.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/firebase/firebase-common-ktx/21.0.0/firebase-common-ktx-21.0.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/firebase/firebase-components/18.0.0/firebase-components-18.0.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/firebase/firebase-installations/17.0.1/firebase-installations-17.0.1-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/firebase/firebase-installations-interop/17.0.1/firebase-installations-interop-17.0.1-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/firebase/firebase-measurement-connector/19.0.0/firebase-measurement-connector-19.0.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/guava/guava/31.1-android/guava-31.1-android.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/fragment/fragment/1.5.7/fragment-1.5.7-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/privacysandbox/ads/ads-adservices/1.0.0-beta05/ads-adservices-1.0.0-beta05-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/privacysandbox/ads/ads-adservices-java/1.0.0-beta05/ads-adservices-java-1.0.0-beta05-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/android/gms/play-services-base/18.5.0/play-services-base-18.5.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlinx/kotlinx-coroutines-play-services/1.6.4/kotlinx-coroutines-play-services-1.6.4.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/firebase/firebase-annotations/16.2.0/firebase-annotations-16.2.0.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/errorprone/error_prone_annotations/2.26.0/error_prone_annotations-2.26.0.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/checkerframework/checker-qual/3.12.0/checker-qual-3.12.0.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/j2objc/j2objc-annotations/1.3/j2objc-annotations-1.3.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/viewpager/viewpager/1.0.0/viewpager-1.0.0-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/javax/inject/javax.inject/1/javax.inject-1.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/customview/customview/1.0.0/customview-1.0.0-exploded/classes.jar"
+      ],
+      "sources": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/firebase/firebase-common/21.0.0/firebase-common-21.0.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/firebase/firebase-common-ktx/21.0.0/firebase-common-ktx-21.0.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/firebase/firebase-components/18.0.0/firebase-components-18.0.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/guava/guava/31.1-android/guava-31.1-android-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/fragment/fragment/1.5.7/fragment-1.5.7-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/privacysandbox/ads/ads-adservices/1.0.0-beta05/ads-adservices-1.0.0-beta05-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/privacysandbox/ads/ads-adservices-java/1.0.0-beta05/ads-adservices-java-1.0.0-beta05-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlinx/kotlinx-coroutines-play-services/1.6.4/kotlinx-coroutines-play-services-1.6.4-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/errorprone/error_prone_annotations/2.26.0/error_prone_annotations-2.26.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/checkerframework/checker-qual/3.12.0/checker-qual-3.12.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/com/google/j2objc/j2objc-annotations/1.3/j2objc-annotations-1.3-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/viewpager/viewpager/1.0.0/viewpager-1.0.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/javax/inject/javax.inject/1/javax.inject-1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/customview/customview/1.0.0/customview-1.0.0-sources.jar"
       ]
     },
     {
@@ -22,15 +229,103 @@
       "sources": []
     },
     {
+      "name": "org.jetbrains.compose.components:components-resources:1.11.1@module:keysbook",
+      "kind": "AAR",
+      "classes": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/components/components-resources-android/1.11.1/components-resources-android-1.11.1-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/runtime/runtime/1.11.1/runtime-1.11.1.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/foundation/foundation/1.11.1/foundation-1.11.1.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/foundation/foundation-android/1.11.2/foundation-android-1.11.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/animation/animation/1.11.1/animation-1.11.1.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/ui/ui/1.11.1/ui-1.11.1.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/foundation/foundation-layout/1.11.1/foundation-layout-1.11.1.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/ui/ui-text/1.11.1/ui-text-1.11.1.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/ui/ui-util/1.11.1/ui-util-1.11.1.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/animation/animation-android/1.11.2/animation-android-1.11.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/foundation/foundation-layout-android/1.11.2/foundation-layout-android-1.11.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/animation/animation-core/1.11.1/animation-core-1.11.1.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/ui/ui-geometry/1.11.1/ui-geometry-1.11.1.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/ui/ui-graphics/1.11.1/ui-graphics-1.11.1.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/androidx/lifecycle/lifecycle-runtime-compose/2.9.6/lifecycle-runtime-compose-2.9.6.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/runtime/runtime-saveable/1.11.1/runtime-saveable-1.11.1.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/ui/ui-unit/1.11.1/ui-unit-1.11.1.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/androidx/lifecycle/lifecycle-viewmodel/2.9.6/lifecycle-viewmodel-2.9.6.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/androidx/lifecycle/lifecycle-viewmodel-savedstate/2.9.6/lifecycle-viewmodel-savedstate-2.9.6.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/animation/animation-core-android/1.11.2/animation-core-android-1.11.2-exploded/classes.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/androidx/lifecycle/lifecycle-runtime/2.9.6/lifecycle-runtime-2.9.6.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/androidx/lifecycle/lifecycle-common/2.9.6/lifecycle-common-2.9.6.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/androidx/savedstate/savedstate-compose/1.3.6/savedstate-compose-1.3.6.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/androidx/savedstate/savedstate/1.3.6/savedstate-1.3.6.jar"
+      ],
+      "sources": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/components/components-resources-android/1.11.1/components-resources-android-1.11.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/runtime/runtime/1.11.1/runtime-1.11.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/foundation/foundation/1.11.1/foundation-1.11.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/foundation/foundation-android/1.11.2/foundation-android-1.11.2-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/animation/animation/1.11.1/animation-1.11.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/ui/ui/1.11.1/ui-1.11.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/foundation/foundation-layout/1.11.1/foundation-layout-1.11.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/ui/ui-text/1.11.1/ui-text-1.11.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/ui/ui-util/1.11.1/ui-util-1.11.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/animation/animation-android/1.11.2/animation-android-1.11.2-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/foundation/foundation-layout-android/1.11.2/foundation-layout-android-1.11.2-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/animation/animation-core/1.11.1/animation-core-1.11.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/ui/ui-geometry/1.11.1/ui-geometry-1.11.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/ui/ui-graphics/1.11.1/ui-graphics-1.11.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/androidx/lifecycle/lifecycle-runtime-compose/2.9.6/lifecycle-runtime-compose-2.9.6-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/runtime/runtime-saveable/1.11.1/runtime-saveable-1.11.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/compose/ui/ui-unit/1.11.1/ui-unit-1.11.1-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/androidx/lifecycle/lifecycle-viewmodel/2.9.6/lifecycle-viewmodel-2.9.6-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/androidx/lifecycle/lifecycle-viewmodel-savedstate/2.9.6/lifecycle-viewmodel-savedstate-2.9.6-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/androidx/compose/animation/animation-core-android/1.11.2/animation-core-android-1.11.2-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/androidx/lifecycle/lifecycle-runtime/2.9.6/lifecycle-runtime-2.9.6-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/androidx/lifecycle/lifecycle-common/2.9.6/lifecycle-common-2.9.6-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/androidx/savedstate/savedstate-compose/1.3.6/savedstate-compose-1.3.6-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/androidx/savedstate/savedstate/1.3.6/savedstate-1.3.6-sources.jar"
+      ]
+    },
+    {
       "name": "org.jetbrains.kotlin:kotlin-stdlib:2.1.0@module:keysbook",
       "kind": "JAR",
       "classes": [
-        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlin/kotlin-stdlib/2.1.0/kotlin-stdlib-2.1.0.jar",
-        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/annotations/13.0/annotations-13.0.jar"
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlin/kotlin-stdlib/2.1.20/kotlin-stdlib-2.1.20.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/annotations/23.0.0/annotations-23.0.0.jar"
       ],
       "sources": [
-        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlin/kotlin-stdlib/2.1.0/kotlin-stdlib-2.1.0-sources.jar",
-        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/annotations/13.0/annotations-13.0-sources.jar"
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlin/kotlin-stdlib/2.1.20/kotlin-stdlib-2.1.20-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/annotations/23.0.0/annotations-23.0.0-sources.jar"
+      ]
+    },
+    {
+      "name": "org.jetbrains.kotlin:kotlin-stdlib:2.4.0@module:keysbook",
+      "kind": "JAR",
+      "classes": [],
+      "sources": []
+    },
+    {
+      "name": "org.jetbrains.kotlin:kotlin-stdlib:2.5.0-Beta2@module:keysbook",
+      "kind": "JAR",
+      "classes": [],
+      "sources": []
+    },
+    {
+      "name": "org.jetbrains.kotlin:kotlin-test:2.4.0@module:keysbook",
+      "kind": "JAR",
+      "classes": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlin/kotlin-test/2.4.0/kotlin-test-2.4.0.jar"
+      ],
+      "sources": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlin/kotlin-test/2.4.0/kotlin-test-2.4.0-sources.jar"
+      ]
+    },
+    {
+      "name": "org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1@module:keysbook",
+      "kind": "JAR",
+      "classes": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlinx/kotlinx-serialization-json-jvm/1.8.1/kotlinx-serialization-json-jvm-1.8.1.jar"
+      ],
+      "sources": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlinx/kotlinx-serialization-json-jvm/1.8.1/kotlinx-serialization-json-jvm-1.8.1-sources.jar"
       ]
     }
   ]
