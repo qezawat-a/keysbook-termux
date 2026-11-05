@@ -37,6 +37,7 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="copy_key">Copy key</string>
+    <string name="copy_url">Copy URL</string>
     <string name="view_models">View models</string>
     <string name="copied">API key copied</string>
     <string name="copied_label">KeysBook key</string>
@@ -55,4 +56,7 @@
     <string name="testing">Testing %1$s…</string>
     <string name="model_ok">OK: %1$s</string>
     <string name="model_failed">Failed: %1$s</string>
+    <string name="copy">Copy</string>
+    <string name="model_copy_label">KeysBook model</string>
+    <string name="model_copied">Copied model %1$s</string>
 </resources>
