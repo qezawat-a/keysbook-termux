@@ -41,7 +41,11 @@ android {
     buildTypes {
         debug {
             isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName("release")
+            // Only apply the release signing config when one was actually created,
+            // otherwise getByName("release") throws during configuration.
+            if (ciHasSigning || localHasSigning) {
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
         release {
             isMinifyEnabled = false
@@ -69,12 +73,7 @@ android {
 }
 
 dependencies {
+    // The app uses only the Android framework, org.json, and javax.crypto —
+    // no third-party runtime libraries are required.
     implementation("org.jetbrains.kotlin:kotlin-stdlib:2.1.0")
-    implementation("androidx.activity:activity-compose:1.13.0")
-    implementation("androidx.databinding:viewbinding:8.7.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
-    implementation("com.google.firebase:firebase-analytics:")
-    implementation("com.google.android.gms:play-services-auth:21.2.0")
-    implementation("com.google.android.gms:play-services-maps:19.0.0")
-    implementation("com.google.android.gms:play-services-location:21.3.0")
 }

@@ -53,7 +53,7 @@ java = ["src/commonTest/kotlin", "src/test/java", "src/test/kotlin"]
 resources = ["src/test/resources"]
 
 [dependencies]
-implementation = ["org.jetbrains.kotlin:kotlin-stdlib:2.1.0", "androidx.activity:activity-compose:1.13.0", "androidx.databinding:viewbinding:8.7.3", "org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1", "com.google.firebase:firebase-analytics:", "com.google.android.gms:play-services-auth:21.2.0", "com.google.android.gms:play-services-maps:19.0.0", "com.google.android.gms:play-services-location:21.3.0", "kotlin-stdlib"]
+implementation = ["org.jetbrains.kotlin:kotlin-stdlib:2.1.0"]
 
 [android]
 namespace = "com.keysbook.app"
@@ -67,7 +67,7 @@ isApplication = true
 manifestPlaceholders = []
 buildConfigFields = []
 buildTypes = [{ name = "debug", debuggable = true, minifyEnabled = false, shrinkResources = false }, { name = "release", debuggable = false, minifyEnabled = false, shrinkResources = false, proguardFiles = ["proguard-android-optimize.txt", "proguard-rules.pro"] }]
-buildConfig = true
+buildConfig = false
 
 [composeResources]
 package = "com.keysbook.app.generated.resources"

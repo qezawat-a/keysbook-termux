@@ -288,12 +288,12 @@
       "name": "org.jetbrains.kotlin:kotlin-stdlib:2.1.0@module:keysbook",
       "kind": "JAR",
       "classes": [
-        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlin/kotlin-stdlib/2.1.20/kotlin-stdlib-2.1.20.jar",
-        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/annotations/23.0.0/annotations-23.0.0.jar"
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlin/kotlin-stdlib/2.1.0/kotlin-stdlib-2.1.0.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/annotations/13.0/annotations-13.0.jar"
       ],
       "sources": [
-        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlin/kotlin-stdlib/2.1.20/kotlin-stdlib-2.1.20-sources.jar",
-        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/annotations/23.0.0/annotations-23.0.0-sources.jar"
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlin/kotlin-stdlib/2.1.0/kotlin-stdlib-2.1.0-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/annotations/13.0/annotations-13.0-sources.jar"
       ]
     },
     {
