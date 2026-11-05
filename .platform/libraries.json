@@ -303,6 +303,18 @@
       "sources": []
     },
     {
+      "name": "org.jetbrains.kotlin:kotlin-stdlib:2.4.21@module:keysbook",
+      "kind": "JAR",
+      "classes": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlin/kotlin-stdlib/2.4.21/kotlin-stdlib-2.4.21.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/annotations/13.0/annotations-13.0.jar"
+      ],
+      "sources": [
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/kotlin/kotlin-stdlib/2.4.21/kotlin-stdlib-2.4.21-sources.jar",
+        "/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/.platform/caches/resolved-deps/org/jetbrains/annotations/13.0/annotations-13.0-sources.jar"
+      ]
+    },
+    {
       "name": "org.jetbrains.kotlin:kotlin-stdlib:2.5.0-Beta2@module:keysbook",
       "kind": "JAR",
       "classes": [],
