@@ -59,9 +59,10 @@ android {
             )
             if (ciHasSigning || localHasUsableKeystore) {
                 signingConfig = signingConfigs.getByName("release")
+            } else {
+                // Fallback to debug signing (automatically generated) so APK is installable.
+                signingConfig = signingConfigs.getByName("debug")
             }
-            // If no signing config is available, build an unsigned release APK.
-            // CI can still assemble without a keystore; signing is applied externally if needed.
         }
     }
 
