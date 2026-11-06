@@ -44,11 +44,13 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           VERSION_CODE: ${{ github.run_number }}
           VERSION_NAME: ${{ github.ref_name }}
+        working-directory: keysbook
         run: |
           gradle assembleRelease --stacktrace
 
       - name: Prepare release artifacts
         id: prepare
+        working-directory: keysbook
         run: |
           apk_path=$(find . -name "*release*.apk" -type f | head -1)
           echo "apk_path=${apk_path}" >> $GITHUB_OUTPUT

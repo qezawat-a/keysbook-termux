@@ -140,7 +140,7 @@ class ModelsActivity : Activity() {
                 val clipboard = getSystemService(CLIPBOARD_SERVICE) as android.content.ClipboardManager
                 val clip = android.content.ClipData.newPlainText(
                     getString(R.string.model_copy_label), modelName)
-                clipboard.primaryClip = clip
+                clipboard.setPrimaryClip(clip)
                 Toast.makeText(this@ModelsActivity,
                     getString(R.string.model_copied, modelName), Toast.LENGTH_SHORT).show()
             }
