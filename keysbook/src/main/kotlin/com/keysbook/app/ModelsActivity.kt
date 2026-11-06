@@ -89,6 +89,18 @@ class ModelsActivity : Activity() {
 
     private fun testModel(model: String) {
         status.text = getString(R.string.testing, model)
+
+        // Visual feedback: mark the tapped row as testing
+        val position = models.indexOf(model)
+        if (position >= 0) {
+            ui.post {
+                val child = list.getChildAt(position - list.firstVisiblePosition)
+                child?.findViewById<TextView>(R.id.name)?.setTextColor(
+                    getColor(R.color.text_muted)
+                )
+            }
+        }
+
         io.execute {
             val result = ModelClient.testModel(entry.provider, entry.baseUrl, entry.apiKey, model)
             ui.post {
@@ -100,6 +112,14 @@ class ModelsActivity : Activity() {
                 }
                 status.text = msg
                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+
+                // Reset text color after test
+                if (position >= 0) {
+                    val child = list.getChildAt(position - list.firstVisiblePosition)
+                    child?.findViewById<TextView>(R.id.name)?.setTextColor(
+                        getColor(R.color.text)
+                    )
+                }
             }
         }
     }
@@ -113,6 +133,17 @@ class ModelsActivity : Activity() {
             val view = convertView ?: LayoutInflater.from(this@ModelsActivity)
                 .inflate(R.layout.item_model, parent, false)
             view.findViewById<TextView>(R.id.name).text = models[position]
+
+            // Copy model name to clipboard
+            view.findViewById<Button>(R.id.copy).setOnClickListener {
+                val modelName = models[position]
+                val clipboard = getSystemService(CLIPBOARD_SERVICE) as android.content.ClipboardManager
+                val clip = android.content.ClipData.newPlainText(
+                    getString(R.string.model_copy_label), modelName)
+                clipboard.primaryClip = clip
+                Toast.makeText(this@ModelsActivity,
+                    getString(R.string.model_copied, modelName), Toast.LENGTH_SHORT).show()
+            }
             return view
         }
     }
