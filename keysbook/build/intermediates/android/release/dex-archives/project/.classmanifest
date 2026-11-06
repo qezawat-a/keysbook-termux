@@ -8,9 +8,9 @@ com/keysbook/app/KeysActivity.class	faae0b7146eac210096ce443
 com/keysbook/app/MainActivity.class	4db731770c4b9c2ab97cbed4
 com/keysbook/app/ModelClient$Result.class	f6af3923ad0866020e1faca4
 com/keysbook/app/ModelClient.class	0168c591636a062610f7a8e0
-com/keysbook/app/ModelsActivity$Companion.class	0f018394e406898af41f31cf
-com/keysbook/app/ModelsActivity$ModelAdapter.class	cc03ee29d027e9a6b508be18
-com/keysbook/app/ModelsActivity.class	322d7c4a2e7cf554cc587bf0
+com/keysbook/app/ModelsActivity$Companion.class	5ee3e0413ab85bd92cff61c6
+com/keysbook/app/ModelsActivity$ModelAdapter.class	34f3c982d31314927f5a124f
+com/keysbook/app/ModelsActivity.class	26e280bb3481b3e1422e8d8c
 com/keysbook/app/Providers$Provider.class	6895834ee647816a64f3422b
 com/keysbook/app/Providers.class	b15efafde059f92cccab1f5f
 com/keysbook/app/Vault$Companion.class	faeafacc502012f30c882c7c

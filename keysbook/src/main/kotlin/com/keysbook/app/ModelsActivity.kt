@@ -1,6 +1,10 @@
 package com.keysbook.app
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -32,6 +36,10 @@ class ModelsActivity : Activity() {
     private val ui = Handler(Looper.getMainLooper())
     private val models = mutableListOf<String>()
 
+    /** model -> true (works) / false (fails), so the row can show the last result. */
+    private val results = mutableMapOf<String, Boolean>()
+    private val testing = mutableSetOf<String>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_models)
@@ -55,7 +63,10 @@ class ModelsActivity : Activity() {
         title.text = getString(R.string.models_title, entry.provider)
         findViewById<Button>(R.id.refresh).setOnClickListener { loadModels() }
 
-        list.setOnItemClickListener { _, _, position, _ -> testModel(models[position]) }
+        // Show the endpoint this key is using, with a one-tap copy.
+        val baseUrlView = findViewById<TextView>(R.id.base_url)
+        baseUrlView.text = entry.baseUrl.ifBlank { getString(R.string.custom_needs_url) }
+        findViewById<Button>(R.id.copy_base).setOnClickListener { copyBaseUrl() }
 
         loadModels()
     }
@@ -68,6 +79,8 @@ class ModelsActivity : Activity() {
     private fun loadModels() {
         status.text = getString(R.string.loading_models)
         models.clear()
+        results.clear()
+        testing.clear()
         adapter.notifyDataSetChanged()
 
         io.execute {
@@ -88,41 +101,49 @@ class ModelsActivity : Activity() {
     }
 
     private fun testModel(model: String) {
+        if (!testing.add(model)) return
+        results.remove(model)
         status.text = getString(R.string.testing, model)
-
-        // Visual feedback: mark the tapped row as testing
-        val position = models.indexOf(model)
-        if (position >= 0) {
-            ui.post {
-                val child = list.getChildAt(position - list.firstVisiblePosition)
-                child?.findViewById<TextView>(R.id.name)?.setTextColor(
-                    getColor(R.color.text_muted)
-                )
-            }
-        }
+        adapter.notifyDataSetChanged()
 
         io.execute {
             val result = ModelClient.testModel(entry.provider, entry.baseUrl, entry.apiKey, model)
             ui.post {
+                testing.remove(model)
                 if (isFinishing) return@post
-                val msg = if (result.error == null) {
+
+                val ok = result.error == null
+                results[model] = ok
+                adapter.notifyDataSetChanged()
+
+                val msg = if (ok) {
                     getString(R.string.model_ok, model)
                 } else {
-                    getString(R.string.model_failed, model)
+                    getString(R.string.model_failed, model) + "\n\n" + result.error
                 }
                 status.text = msg
-                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 
-                // Reset text color after test
-                if (position >= 0) {
-                    val child = list.getChildAt(position - list.firstVisiblePosition)
-                    child?.findViewById<TextView>(R.id.name)?.setTextColor(
-                        getColor(R.color.text)
-                    )
-                }
+                AlertDialog.Builder(this)
+                    .setTitle(R.string.test_result_title)
+                    .setMessage(msg)
+                    .setPositiveButton(R.string.ok, null)
+                    .show()
             }
         }
     }
+
+    private fun copyBaseUrl() {
+        val text = entry.baseUrl
+        if (text.isBlank()) {
+            toast(getString(R.string.custom_needs_url))
+            return
+        }
+        val cb = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        cb.setPrimaryClip(ClipData.newPlainText(getString(R.string.base_url), text))
+        toast(getString(R.string.base_url_copied, text))
+    }
+
+    private fun toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 
     private inner class ModelAdapter : BaseAdapter() {
         override fun getCount(): Int = models.size
@@ -132,18 +153,26 @@ class ModelsActivity : Activity() {
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val view = convertView ?: LayoutInflater.from(this@ModelsActivity)
                 .inflate(R.layout.item_model, parent, false)
-            view.findViewById<TextView>(R.id.name).text = models[position]
 
-            // Copy model name to clipboard
-            view.findViewById<Button>(R.id.copy).setOnClickListener {
-                val modelName = models[position]
-                val clipboard = getSystemService(CLIPBOARD_SERVICE) as android.content.ClipboardManager
-                val clip = android.content.ClipData.newPlainText(
-                    getString(R.string.model_copy_label), modelName)
-                clipboard.setPrimaryClip(clip)
-                Toast.makeText(this@ModelsActivity,
-                    getString(R.string.model_copied, modelName), Toast.LENGTH_SHORT).show()
+            val model = models[position]
+            val name = view.findViewById<TextView>(R.id.name)
+            name.text = model
+
+            // Row state: testing / ok / failed
+            val colorRes = when {
+                model in testing -> R.color.text_muted
+                results[model] == true -> R.color.accent
+                results[model] == false -> R.color.danger
+                else -> R.color.text
             }
+            name.setTextColor(getColor(colorRes))
+
+            // Tapping the row (anywhere except the copy button) tests the model.
+            view.setOnClickListener { testModel(model) }
+
+            // Copy button copies the provider Base URL (the endpoint).
+            view.findViewById<Button>(R.id.copy).setOnClickListener { copyBaseUrl() }
+
             return view
         }
     }
