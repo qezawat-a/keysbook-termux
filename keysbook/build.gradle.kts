@@ -3,10 +3,18 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
+// Load local keystore properties if present, for debug/release signing during local dev.
+val localKeystorePropsFile = rootProject.file("keystore.properties")
+val localKeystoreProps = java.util.Properties()
+var localHasUsableKeystore = false
+if (localKeystorePropsFile.canRead()) {
+    localKeystorePropsFile.inputStream().use { localKeystoreProps.load(it) }
+    val storeFile = rootProject.file(localKeystoreProps.getProperty("storeFile", ""))
+    localHasUsableKeystore = storeFile.exists()
+}
+
 val ciKeystoreFile = System.getenv("KEYSTORE_FILE")
 val ciHasSigning = ciKeystoreFile != null && file(ciKeystoreFile).exists()
-val localKeystoreProps = rootProject.file("keystore.properties")
-val localHasSigning = localKeystoreProps.canRead()
 
 android {
     namespace = "com.keysbook.app"
@@ -28,12 +36,12 @@ android {
                 keyAlias = System.getenv("KEY_ALIAS")
                 keyPassword = System.getenv("KEY_PASSWORD")
             }
-        } else if (localHasSigning) {
+        } else if (localHasUsableKeystore) {
             create("release") {
-                storeFile = rootProject.file("debug.keystore")
-                storePassword = "android"
-                keyAlias = "androiddebugkey"
-                keyPassword = "android"
+                storeFile = rootProject.file(localKeystoreProps.getProperty("storeFile", "debug.keystore"))
+                storePassword = localKeystoreProps.getProperty("storePassword", "android")
+                keyAlias = localKeystoreProps.getProperty("keyAlias", "androiddebugkey")
+                keyPassword = localKeystoreProps.getProperty("keyPassword", "android")
             }
         }
     }
@@ -41,11 +49,7 @@ android {
     buildTypes {
         debug {
             isMinifyEnabled = false
-            // Only apply the release signing config when one was actually created,
-            // otherwise getByName("release") throws during configuration.
-            if (ciHasSigning || localHasSigning) {
-                signingConfig = signingConfigs.getByName("release")
-            }
+            signingConfig = signingConfigs.findByName("debug")
         }
         release {
             isMinifyEnabled = false
@@ -53,9 +57,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            if (ciHasSigning || localHasSigning) {
+            if (ciHasSigning || localHasUsableKeystore) {
                 signingConfig = signingConfigs.getByName("release")
             }
+            // If no signing config is available, build an unsigned release APK.
+            // CI can still assemble without a keystore; signing is applied externally if needed.
         }
     }
 
@@ -68,12 +74,9 @@ android {
         jvmTarget = "17"
     }
 
-    // CodeAssist keeps Kotlin sources under src/main/kotlin.
     sourceSets["main"].java.srcDirs("src/main/kotlin", "src/main/java")
 }
 
 dependencies {
-    // The app uses only the Android framework, org.json, and javax.crypto —
-    // no third-party runtime libraries are required.
     implementation("org.jetbrains.kotlin:kotlin-stdlib:2.1.0")
 }
