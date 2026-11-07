@@ -2,8 +2,8 @@ com/keysbook/app/AppState.class	b028512fa9887c255597b862
 com/keysbook/app/EditKeyActivity$Companion.class	f92e82e7ac3faa0d05a0e083
 com/keysbook/app/EditKeyActivity$onCreate$2.class	784231155d8ebd3765efbc0b
 com/keysbook/app/EditKeyActivity.class	3f5275846b3fb7a707bd6e42
-com/keysbook/app/KeysActivity$KeyAdapter.class	856dd21e6bf607ae27b767a4
-com/keysbook/app/KeysActivity.class	3d05780b95a4904a0229029f
+com/keysbook/app/KeysActivity$KeyAdapter.class	9b8d1308838aa4c45e7649ee
+com/keysbook/app/KeysActivity.class	12909b9a5f6661636d82430a
 com/keysbook/app/MainActivity.class	c51d9ab1ea6fb0dccfce385c
 com/keysbook/app/ModelClient$Result.class	da7f3558fbce8b3bfca18a02
 com/keysbook/app/ModelClient.class	3c7a95bac2ecb9d62eb20aec

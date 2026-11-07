@@ -1,6 +1,7 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    // Versions are pinned here because CI runs plain Gradle 8.10 with no wrapper.
+    id("com.android.application") version "8.7.3"
+    id("org.jetbrains.kotlin.android") version "2.0.21"
 }
 
 // Load local keystore properties if present, for debug/release signing during local dev.
