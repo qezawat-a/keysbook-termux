@@ -27,4 +27,4 @@ jobs:
 
     - name: Build with Gradle
       working-directory: keysbook
-      run: ./gradlew build
+      run: gradle build

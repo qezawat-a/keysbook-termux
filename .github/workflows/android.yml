@@ -8,6 +8,10 @@ on:
 
 jobs:
   build:
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'main' of https://github.com/qezawat-a/keysbook-termux.git
     runs-on: ubuntu-latest
 
     steps:
