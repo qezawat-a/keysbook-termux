@@ -8,8 +8,7 @@ on:
 
 jobs:
   build:
-
-    runs-on: instabox-medium
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
@@ -24,7 +23,8 @@ jobs:
       uses: gradle/actions/setup@v4
       with:
         gradle-version: 8.10
+        cache: true
 
     - name: Build with Gradle
       working-directory: keysbook
-      run: gradle build
+      run: ./gradlew build

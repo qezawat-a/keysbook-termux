@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: instabox-medium
+    runs-on: ubuntu-latest
     permissions:
       contents: write
 
@@ -25,6 +25,7 @@ jobs:
         uses: gradle/actions/setup@v4
         with:
           gradle-version: 8.10
+          cache: true
 
       - name: Decode Keystore
         env:
@@ -54,7 +55,7 @@ jobs:
         run: |
           apk_path=$(find . -name "*release*.apk" -type f | head -1)
           echo "apk_path=${apk_path}" >> $GITHUB_OUTPUT
-          echo "version_name=${github_ref_name}" >> $GITHUB_OUTPUT
+          echo "version_name=${{ github.ref_name }}" >> $GITHUB_OUTPUT
 
       - name: Create Release
         id: create_release
