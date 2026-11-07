@@ -1,6 +1,10 @@
 package com.keysbook.app
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -61,6 +65,25 @@ class KeysActivity : Activity() {
         startActivity(intent)
     }
 
+    private fun confirmDelete(entry: Vault.Entry) {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.delete_confirm_title)
+            .setMessage(R.string.delete_confirm_msg)
+            .setPositiveButton(R.string.delete) { _, _ ->
+                vault.remove(entry.id)
+                refreshList()
+            }
+            .setNegativeButton(R.string.cancel, null)
+            .show()
+    }
+
+    private fun copyToClipboard(label: String, text: String) {
+        val cb = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        cb.setPrimaryClip(ClipData.newPlainText(label, text))
+    }
+
+    private fun toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+
     private fun lockVault() {
         vault.lock()
         val intent = Intent(this, MainActivity::class.java).apply {
@@ -88,6 +111,30 @@ class KeysActivity : Activity() {
             else
                 entry.apiKey
             view.findViewById<TextView>(R.id.key).text = maskedKey
+
+            view.findViewById<Button>(R.id.copy).setOnClickListener {
+                if (entry.apiKey.isBlank()) {
+                    toast(getString(R.string.copy_empty))
+                } else {
+                    copyToClipboard(getString(R.string.copied_label), entry.apiKey)
+                    toast(getString(R.string.copied_full, maskedKey))
+                }
+            }
+            view.findViewById<Button>(R.id.copy_url).setOnClickListener {
+                if (entry.baseUrl.isBlank()) {
+                    toast(getString(R.string.custom_needs_url))
+                } else {
+                    copyToClipboard(getString(R.string.base_url), entry.baseUrl)
+                    toast(getString(R.string.base_url_copied, entry.baseUrl))
+                }
+            }
+            view.findViewById<Button>(R.id.models).setOnClickListener {
+                startActivity(Intent(this@KeysActivity, ModelsActivity::class.java).apply {
+                    putExtra(ModelsActivity.EXTRA_ID, entry.id)
+                })
+            }
+            view.findViewById<Button>(R.id.edit).setOnClickListener { editKey(entry) }
+            view.findViewById<Button>(R.id.delete).setOnClickListener { confirmDelete(entry) }
             return view
         }
     }
