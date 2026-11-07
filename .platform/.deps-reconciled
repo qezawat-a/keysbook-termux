@@ -2,4 +2,3 @@ v=5
 g=2
 repos=https://repo1.maven.org/maven2,https://dl.google.com/android/maven2,https://github.com/qezawat-a/keysbook-termux.git
 keysbook|androidx.databinding:viewbinding:8.7.3|
-keysbook|kotlin-stdlib|

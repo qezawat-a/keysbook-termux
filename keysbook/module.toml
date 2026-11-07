@@ -55,13 +55,12 @@ minSdk = 26
 targetSdk = 34
 manifest = "src/main/AndroidManifest.xml"
 versionCode = 1
-versionName = "1.5.0"
+versionName = "1.0"
 isApplication = true
 manifestPlaceholders = []
 buildConfigFields = []
-buildTypes = [{ name = "debug", debuggable = true, minifyEnabled = true, shrinkResources = true, signingConfig = "picked-94776553-release" }, { name = "release", debuggable = true, minifyEnabled = true, shrinkResources = true, proguardFiles = ["proguard-android-optimize.txt", "proguard-rules.pro"], signingConfig = "picked-94776553-release" }]
-viewBinding = true
-serialization = true
+buildTypes = [{ name = "debug", debuggable = true, minifyEnabled = false, shrinkResources = false }, { name = "release", debuggable = false, minifyEnabled = false, shrinkResources = false, proguardFiles = ["proguard-android-optimize.txt", "proguard-rules.pro"] }]
+buildConfig = false
 
 [composeResources]
 package = "com.keysbook.app.generated.resources"
