@@ -3,18 +3,14 @@ name: Build and Release APK
 on:
   push:
     tags:
-      - 'v.1.5.0'
+      - '*'
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
-<<<<<<< HEAD
-    permissions:
-=======
-    permissions: defaults:
-      
->>>>>>> branch 'main' of https://github.com/qezawat-a/keysbook-termux.git
-      contents: write
 
     steps:
       - name: Checkout repository
@@ -24,25 +20,27 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 17
+          java-version: '17'
+          cache: gradle
 
-      - name: Setup Gradle
+      - name: Set up Gradle
         uses: gradle/actions/setup@v4
         with:
-          gradle-version: 8.10
+          gradle-version: '8.10'
           cache: true
 
-      - name: Decode Keystore
+      - name: Decode keystore
         env:
           KEYSTORE: ${{ secrets.KEYSTORE }}
           KEYSTORE_FILE: ${{ runner.temp }}/upload-key.keystore
-        run: |
-          if [ -n "$KEYSTORE" ]; then
-            echo "$KEYSTORE" | base64 -d > "$KEYSTORE_FILE"
-          fi
         shell: bash
+        run: |
+          if [[ -n "$KEYSTORE" ]]; then
+            echo "$KEYSTORE" | base64 --decode > "$KEYSTORE_FILE"
+          fi
 
-      - name: Build with Gradle
+      - name: Build release APK
+        working-directory: keysbook
         env:
           KEYSTORE_FILE: ${{ runner.temp }}/upload-key.keystore
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
@@ -50,30 +48,25 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           VERSION_CODE: ${{ github.run_number }}
           VERSION_NAME: ${{ github.ref_name }}
-        working-directory: keysbook
-        run: |
-          gradle assembleRelease --stacktrace
+        run: gradle assembleRelease --stacktrace
 
-      - name: Prepare release artifacts
-        id: prepare
-        working-directory: keysbook
+      - name: Find release APK
+        id: apk
+        shell: bash
         run: |
-          apk_path=$(find . -name "*release*.apk" -type f | head -1)
-          echo "apk_path=${apk_path}" >> $GITHUB_OUTPUT
-          echo "version_name=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          apk_path=$(find keysbook -type f -path '*/build/outputs/apk/release/*.apk' -print -quit)
+          if [[ -z "$apk_path" ]]; then
+            echo "No release APK was produced." >&2
+            exit 1
+          fi
+          echo "path=$apk_path" >> "$GITHUB_OUTPUT"
 
-      - name: Create Release
-        id: create_release
+      - name: Create GitHub release
         uses: softprops/action-gh-release@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref_name }}
-          release_name: Release ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
           draft: false
           prerelease: false
-          body: |
-            Automated release for version ${{ github.ref_name }}.
-          files: |
-            ${{ steps.prepare.outputs.apk_path }}
-          file_glob: true
+          body: Automated release for version ${{ github.ref_name }}.
+          files: ${{ steps.apk.outputs.path }}
