@@ -132,6 +132,12 @@ class ModelsActivity : Activity() {
         }
     }
 
+    private fun copyModel(model: String) {
+        val cb = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        cb.setPrimaryClip(ClipData.newPlainText(getString(R.string.model_copy_label), model))
+        toast(getString(R.string.model_copied, model))
+    }
+
     private fun copyBaseUrl() {
         val text = entry.baseUrl
         if (text.isBlank()) {
@@ -170,8 +176,8 @@ class ModelsActivity : Activity() {
             // Tapping the row (anywhere except the copy button) tests the model.
             view.setOnClickListener { testModel(model) }
 
-            // Copy button copies the provider Base URL (the endpoint).
-            view.findViewById<Button>(R.id.copy).setOnClickListener { copyBaseUrl() }
+            // Copy button copies the model name/ID (not the Base URL).
+            view.findViewById<Button>(R.id.copy).setOnClickListener { copyModel(model) }
 
             return view
         }

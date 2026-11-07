@@ -65,6 +65,8 @@
 <string name="copy">Copy</string>
 <string name="model_copy_label">KeysBook model</string>
 <string name="model_copied">Copied model %1$s</string>
+<string name="test_result_title">Model test</string>
+<string name="base_url_copied">Copied Base URL %1$s</string>
 <style name="Theme.KeysBook" parent="android:Theme.Material">
         <item name="android:colorPrimary">@color/primary</item>
         <item name="android:colorPrimaryDark">@color/primary_dark</item>
