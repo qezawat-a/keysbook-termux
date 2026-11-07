@@ -79,5 +79,6 @@ android {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.1.0")
+    implementation("androidx.databinding:viewbinding:8.7.3")
+    implementation("com.google.firebase:firebase-analytics:")
 }

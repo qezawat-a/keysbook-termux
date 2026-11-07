@@ -29,7 +29,13 @@ class Vault(private val vaultFile: File) {
         val baseUrl: String,
         val apiKey: String,
         val notes: String
-    )
+    ) {
+        /** Mask the key for display: show first 4 and last 4 chars with *** in between. */
+        fun maskKey(): String {
+            if (apiKey.length <= 8) return "********"
+            return "${apiKey.take(4)}****${apiKey.takeLast(4)}"
+        }
+    }
 
     var entries: MutableList<Entry> = mutableListOf()
         private set

@@ -1,0 +1,90 @@
+package com.keysbook.app
+
+import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.*
+
+/** List saved API keys. Equivalent to the Python app's key list screen. */
+class KeysActivity : Activity() {
+
+    private lateinit var vault: Vault
+    private lateinit var listView: ListView
+    private lateinit var emptyView: TextView
+    private lateinit var adapter: KeyAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_keys)
+
+        vault = AppState.get(this)
+        if (!vault.unlocked) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+            return
+        }
+
+        listView = findViewById(R.id.list)
+        emptyView = findViewById(R.id.empty)
+        findViewById<Button>(R.id.lock).setOnClickListener { lockVault() }
+        findViewById<Button>(R.id.add).setOnClickListener { addKey() }
+
+        adapter = KeyAdapter()
+        listView.adapter = adapter
+        listView.emptyView = emptyView
+        listView.setOnItemClickListener { _, _, pos, _ ->
+            editKey(adapter.entries[pos])
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refreshList()
+    }
+
+    private fun refreshList() {
+        adapter.entries = vault.entries
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun addKey() {
+        startActivity(Intent(this, EditKeyActivity::class.java))
+    }
+
+    private fun editKey(entry: Vault.Entry) {
+        val intent = Intent(this, EditKeyActivity::class.java).apply {
+            putExtra(EditKeyActivity.EXTRA_ID, entry.id)
+        }
+        startActivity(intent)
+    }
+
+    private fun lockVault() {
+        vault.lock()
+        val intent = Intent(this, MainActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        }
+        startActivity(intent)
+        finish()
+    }
+
+    private inner class KeyAdapter : BaseAdapter() {
+        var entries = emptyList<Vault.Entry>()
+
+        override fun getCount(): Int = entries.size
+        override fun getItem(pos: Int): Any = entries[pos]
+        override fun getItemId(pos: Int): Long = pos.toLong()
+
+        override fun getView(pos: Int, convertView: View?, parent: ViewGroup): View {
+            val view = convertView ?: LayoutInflater.from(this@KeysActivity).inflate(R.layout.item_key, parent, false)
+            val entry = entries[pos]
+            view.findViewById<TextView>(R.id.provider).text = entry.provider
+            view.findViewById<TextView>(R.id.label).text = entry.label
+            view.findViewById<TextView>(R.id.url).text = entry.baseUrl
+            view.findViewById<TextView>(R.id.key).text = entry.maskKey()
+            return view
+        }
+    }
+}

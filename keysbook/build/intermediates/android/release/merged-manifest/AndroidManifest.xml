@@ -18,5 +18,7 @@
         <activity android:name=".KeysActivity" android:exported="false" android:label="@string/keys_title"/>
         <activity android:name=".EditKeyActivity" android:exported="false" android:label="@string/new_key" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ModelsActivity" android:exported="false" android:label="@string/models_label"/>
+        <activity android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity" android:excludeFromRecents="true" android:exported="false" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <service android:name="com.google.android.gms.auth.api.signin.RevocationBoundService" android:exported="true" android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" android:visibleToInstantApps="true"/>
     </application>
 </manifest>

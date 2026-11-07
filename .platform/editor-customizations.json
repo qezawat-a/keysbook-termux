@@ -1,0 +1,165 @@
+{
+  "version": 1,
+  "symbols": [
+    {
+      "label": "Tab",
+      "insert": "",
+      "pinned": true,
+      "action": "tab"
+    },
+    {
+      "label": "//",
+      "insert": "",
+      "pinned": true,
+      "action": "comment"
+    },
+    {
+      "label": "Move line up",
+      "insert": "",
+      "pinned": true,
+      "action": "moveLineUp"
+    },
+    {
+      "label": "Move line down",
+      "insert": "",
+      "pinned": true,
+      "action": "moveLineDown"
+    },
+    {
+      "label": "Duplicate line",
+      "insert": "",
+      "pinned": true,
+      "action": "duplicateLine"
+    },
+    {
+      "label": "{",
+      "insert": "{"
+    },
+    {
+      "label": "}",
+      "insert": "}"
+    },
+    {
+      "label": "(",
+      "insert": "("
+    },
+    {
+      "label": ")",
+      "insert": ")"
+    },
+    {
+      "label": ";",
+      "insert": ";"
+    },
+    {
+      "label": "=",
+      "insert": "="
+    },
+    {
+      "label": ".",
+      "insert": "."
+    },
+    {
+      "label": ",",
+      "insert": ","
+    },
+    {
+      "label": "\"",
+      "insert": "\""
+    },
+    {
+      "label": "'",
+      "insert": "'"
+    },
+    {
+      "label": ":",
+      "insert": ":"
+    },
+    {
+      "label": "<",
+      "insert": "<"
+    },
+    {
+      "label": ">",
+      "insert": ">"
+    },
+    {
+      "label": "/",
+      "insert": "/"
+    },
+    {
+      "label": "*",
+      "insert": "*"
+    },
+    {
+      "label": "[",
+      "insert": "["
+    },
+    {
+      "label": "]",
+      "insert": "]"
+    },
+    {
+      "label": "+",
+      "insert": "+"
+    },
+    {
+      "label": "-",
+      "insert": "-"
+    },
+    {
+      "label": "&",
+      "insert": "&"
+    },
+    {
+      "label": "|",
+      "insert": "|"
+    },
+    {
+      "label": "!",
+      "insert": "!"
+    },
+    {
+      "label": "?",
+      "insert": "?"
+    },
+    {
+      "label": "@",
+      "insert": "@"
+    },
+    {
+      "label": "#",
+      "insert": "#"
+    },
+    {
+      "label": "_",
+      "insert": "_"
+    },
+    {
+      "label": "%",
+      "insert": "%"
+    },
+    {
+      "label": "\\",
+      "insert": "\\"
+    },
+    {
+      "label": "Clipboard",
+      "insert": "",
+      "pinned": true,
+      "action": "pasteHistory"
+    },
+    {
+      "label": "Next problem",
+      "insert": "",
+      "pinned": true,
+      "action": "nextProblem"
+    },
+    {
+      "label": "Bookmark",
+      "insert": "",
+      "pinned": true,
+      "action": "toggleBookmark"
+    }
+  ]
+}
