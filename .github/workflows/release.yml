@@ -3,17 +3,12 @@ name: Build and Release APK
 on:
   push:
     tags:
-      - 'v.1.5.0'
+      - 'v*'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-<<<<<<< HEAD
     permissions:
-=======
-    permissions: defaults:
-      
->>>>>>> branch 'main' of https://github.com/qezawat-a/keysbook-termux.git
       contents: write
 
     steps:
@@ -27,7 +22,7 @@ jobs:
           java-version: 17
 
       - name: Setup Gradle
-        uses: gradle/actions/setup@v4
+        uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: 8.10
           cache: true
@@ -58,7 +53,14 @@ jobs:
         id: prepare
         working-directory: keysbook
         run: |
+          echo "=== Looking for APK ==="
+          find . -name "*.apk" -type f
+          echo "=== Looking for release APK ==="
           apk_path=$(find . -name "*release*.apk" -type f | head -1)
+          if [ -z "$apk_path" ]; then
+            echo "ERROR: No release APK found!"
+            exit 1
+          fi
           echo "apk_path=${apk_path}" >> $GITHUB_OUTPUT
           echo "version_name=${{ github.ref_name }}" >> $GITHUB_OUTPUT
 
@@ -68,12 +70,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref_name }}
-          release_name: Release ${{ github.ref_name }}
+          tag_name: ${{ github.ref.name }}
+          release_name: Release ${{ github.ref.name }}
           draft: false
           prerelease: false
           body: |
-            Automated release for version ${{ github.ref_name }}.
+            Automated release for version ${{ github.ref.name }}.
           files: |
             ${{ steps.prepare.outputs.apk_path }}
           file_glob: true

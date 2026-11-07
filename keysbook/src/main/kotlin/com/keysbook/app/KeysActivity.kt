@@ -83,7 +83,11 @@ class KeysActivity : Activity() {
             view.findViewById<TextView>(R.id.provider).text = entry.provider
             view.findViewById<TextView>(R.id.label).text = entry.label
             view.findViewById<TextView>(R.id.url).text = entry.baseUrl
-            view.findViewById<TextView>(R.id.key).text = entry.maskKey()
+            val maskedKey = if (entry.apiKey.length > 8)
+                entry.apiKey.take(4) + "****" + entry.apiKey.takeLast(4)
+            else
+                entry.apiKey
+            view.findViewById<TextView>(R.id.key).text = maskedKey
             return view
         }
     }
