@@ -3,12 +3,13 @@ name: Build and Release APK
 on:
   push:
     tags:
-      - 'v*'
+      - 'v.1.5.0'
 
 jobs:
   build:
-    runs-on: instabox-medium
-    permissions:
+    runs-on: ubuntu-latest
+    permissions: defaults:
+      
       contents: write
 
     steps:
