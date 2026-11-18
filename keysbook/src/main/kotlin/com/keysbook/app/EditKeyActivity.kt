@@ -71,13 +71,7 @@ class EditKeyActivity : Activity() {
             override fun onNothingSelected(p: AdapterView<*>?) = Unit
         }
 
-        addKeyButton.setOnClickListener {
-            if (keyInputs.size >= MAX_KEYS_PER_PROVIDER) {
-                toast(getString(R.string.key_box_limit, MAX_KEYS_PER_PROVIDER))
-            } else {
-                addKeyBox("")
-            }
-        }
+        addKeyButton.setOnClickListener { addKeyBox("") }
 
         editingId = intent.getStringExtra(EXTRA_ID)
         editingId?.let { load(it) }
@@ -113,7 +107,7 @@ class EditKeyActivity : Activity() {
         }
         label.setText(e.label)
         url.setText(e.baseUrl)
-        addKeyBox(e.apiKey)
+        if (e.apiKeys.isEmpty()) addKeyBox("") else e.apiKeys.forEach { addKeyBox(it) }
         notes.setText(e.notes)
     }
 
@@ -131,25 +125,19 @@ class EditKeyActivity : Activity() {
             return
         }
 
-        // Each provider may hold at most MAX_KEYS_PER_PROVIDER keys (the edited entry is not counted twice).
-        val keysForProvider = vault.entries.count { it.provider == providerName && it.id != editingId }
-        val roomLeft = (MAX_KEYS_PER_PROVIDER - keysForProvider).coerceAtLeast(0)
-        if (apiKeys.size > roomLeft) {
-            toast(getString(R.string.provider_key_limit, keysForProvider, roomLeft, MAX_KEYS_PER_PROVIDER))
-            return
-        }
-
         val label = label.text.toString().trim()
         val notes = notes.text.toString().trim()
-        if (editingId == null) {
-            apiKeys.forEach { k ->
-                vault.add(Vault.Entry(Vault.newId(), providerName, label, baseUrl, k, notes))
-            }
+        // All key boxes stay in one entry, so the provider card does not multiply.
+        val editing = editingId?.let { vault.find(it) }
+        if (editing != null) {
+            vault.update(editing.copy(provider = providerName, label = label, baseUrl = baseUrl, apiKeys = apiKeys, notes = notes))
         } else {
-            // Editing keeps the original entry; extra boxes become new entries.
-            vault.update(Vault.Entry(editingId!!, providerName, label, baseUrl, apiKeys[0], notes))
-            apiKeys.drop(1).forEach { k ->
-                vault.add(Vault.Entry(Vault.newId(), providerName, label, baseUrl, k, notes))
+            // New key for a provider that already has a card: join that card instead of adding one.
+            val existing = vault.entries.firstOrNull { it.provider == providerName }
+            if (existing == null) {
+                vault.add(Vault.Entry(Vault.newId(), providerName, label, baseUrl, apiKeys, notes))
+            } else {
+                vault.update(existing.copy(apiKeys = (existing.apiKeys + apiKeys).distinct()))
             }
         }
         toast(getString(R.string.saved))
@@ -160,6 +148,5 @@ class EditKeyActivity : Activity() {
 
     companion object {
         const val EXTRA_ID = "entry_id"
-        const val MAX_KEYS_PER_PROVIDER = 10
     }
 }

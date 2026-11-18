@@ -42,6 +42,7 @@
     <string name="copied">API key copied</string>
     <string name="copied_label">KeysBook key</string>
     <string name="copy_empty">This key is empty.</string>
+    <string name="choose_key_to_copy">Choose a key to copy</string>
     <string name="copied_full">Copied key %1$s</string>
     <string name="copy_manual_hint">The clipboard is not available. The key is selected below — long-press to copy it.</string>
     <string name="delete_confirm_title">Delete key?</string>
@@ -62,6 +63,4 @@
     <string name="test_result_title">Model test</string>
     <string name="base_url_copied">Copied Base URL %1$s</string>
     <string name="remove_key">Remove</string>
-    <string name="key_box_limit">You can add up to %1$d keys for this provider</string>
-    <string name="provider_key_limit">This provider already has %1$d saved keys. You can add %2$d more (maximum %3$d).</string>
 </resources>

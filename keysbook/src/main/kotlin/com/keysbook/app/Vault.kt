@@ -27,9 +27,12 @@ class Vault(private val vaultFile: File) {
         val provider: String,
         val label: String,
         val baseUrl: String,
-        val apiKey: String,
+        val apiKeys: List<String>,
         val notes: String
     ) {
+        /** The first key; used for copy, model listing and testing. */
+        val apiKey: String get() = apiKeys.firstOrNull().orEmpty()
+
         /** Mask the key for display: show first 4 and last 4 chars with *** in between. */
         fun maskKey(): String {
             if (apiKey.length <= 8) return "********"
@@ -118,7 +121,9 @@ class Vault(private val vaultFile: File) {
                 put("provider", e.provider)
                 put("label", e.label)
                 put("base_url", e.baseUrl)
+                // "api_key" keeps the first key so older readers still find one.
                 put("api_key", e.apiKey)
+                put("api_keys", JSONArray(e.apiKeys))
                 put("notes", e.notes)
             })
         }
@@ -133,13 +138,19 @@ class Vault(private val vaultFile: File) {
         val arr = json.optJSONArray("keys") ?: return out
         for (i in 0 until arr.length()) {
             val o = arr.optJSONObject(i) ?: continue
+            val keyArr = o.optJSONArray("api_keys")
+            val keys = if (keyArr != null) {
+                (0 until keyArr.length()).map { keyArr.optString(it) }.filter { it.isNotBlank() }
+            } else {
+                listOf(o.optString("api_key")).filter { it.isNotBlank() }
+            }
             out.add(
                 Entry(
                     id = o.optString("id"),
                     provider = o.optString("provider"),
                     label = o.optString("label"),
                     baseUrl = o.optString("base_url"),
-                    apiKey = o.optString("api_key"),
+                    apiKeys = keys,
                     notes = o.optString("notes")
                 )
             )

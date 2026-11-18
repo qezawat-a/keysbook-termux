@@ -77,6 +77,23 @@ class KeysActivity : Activity() {
             .show()
     }
 
+    /** Lets the user pick which of a provider's keys to copy. */
+    private fun chooseKeyToCopy(keys: List<String>) {
+        val items = keys.mapIndexed { i, k ->
+            val masked = if (k.length > 8) k.take(4) + "****" + k.takeLast(4) else k
+            "${i + 1}. $masked"
+        }.toTypedArray()
+        AlertDialog.Builder(this)
+            .setTitle(R.string.choose_key_to_copy)
+            .setItems(items) { _, which ->
+                val key = keys[which]
+                copyToClipboard(getString(R.string.copied_label), key)
+                toast(getString(R.string.copied_full, items[which].substringAfter(". ")))
+            }
+            .setNegativeButton(R.string.cancel, null)
+            .show()
+    }
+
     private fun copyToClipboard(label: String, text: String) {
         val cb = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         cb.setPrimaryClip(ClipData.newPlainText(label, text))
@@ -113,11 +130,14 @@ class KeysActivity : Activity() {
             view.findViewById<TextView>(R.id.key).text = maskedKey
 
             view.findViewById<Button>(R.id.copy).setOnClickListener {
-                if (entry.apiKey.isBlank()) {
-                    toast(getString(R.string.copy_empty))
-                } else {
-                    copyToClipboard(getString(R.string.copied_label), entry.apiKey)
-                    toast(getString(R.string.copied_full, maskedKey))
+                val keys = entry.apiKeys.filter { it.isNotBlank() }
+                when {
+                    keys.isEmpty() -> toast(getString(R.string.copy_empty))
+                    keys.size == 1 -> {
+                        copyToClipboard(getString(R.string.copied_label), keys[0])
+                        toast(getString(R.string.copied_full, maskedKey))
+                    }
+                    else -> chooseKeyToCopy(keys)
                 }
             }
             view.findViewById<Button>(R.id.copy_url).setOnClickListener {

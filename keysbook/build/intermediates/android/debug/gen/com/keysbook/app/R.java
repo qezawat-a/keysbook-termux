@@ -82,6 +82,7 @@ public final class R {
     public static final int base_url=0x7f060003;
     public static final int base_url_copied=0x7f060004;
     public static final int cancel=0x7f060005;
+    public static final int choose_key_to_copy=0x7f06003b;
     public static final int copied=0x7f060006;
     public static final int copied_full=0x7f060007;
     public static final int copied_label=0x7f060008;
@@ -100,7 +101,6 @@ public final class R {
     public static final int edit=0x7f060015;
     public static final int edit_key=0x7f060016;
     public static final int empty_password=0x7f060017;
-    public static final int key_box_limit=0x7f060039;
     public static final int keys_title=0x7f060018;
     public static final int label=0x7f060019;
     public static final int loading_models=0x7f06001a;
@@ -121,7 +121,6 @@ public final class R {
     public static final int ok=0x7f060029;
     public static final int password_hint=0x7f06002a;
     public static final int provider=0x7f06002b;
-    public static final int provider_key_limit=0x7f06002c;
     public static final int refresh=0x7f06002d;
     public static final int remove_key=0x7f06003a;
     public static final int save=0x7f06002e;
