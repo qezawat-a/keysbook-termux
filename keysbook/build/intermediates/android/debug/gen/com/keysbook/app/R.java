@@ -26,11 +26,14 @@ public final class R {
     public static final int bg_button_outline=0x7f020001;
     public static final int bg_card=0x7f020002;
     public static final int bg_input=0x7f020003;
+    public static final int bg_key_frame=0x7f020006;
+    public static final int bg_keys_group=0x7f020007;
     public static final int bg_screen=0x7f020004;
     public static final int ic_launcher_background=0x7f020005;
   }
   public static final class id {
     public static final int add=0x7f030000;
+    public static final int add_key=0x7f030019;
     public static final int base_url=0x7f030001;
     public static final int cancel=0x7f030002;
     public static final int copy=0x7f030003;
@@ -41,6 +44,8 @@ public final class R {
     public static final int edit=0x7f030008;
     public static final int empty=0x7f030009;
     public static final int key=0x7f03000a;
+    public static final int key_input=0x7f03001a;
+    public static final int keys_container=0x7f03001b;
     public static final int label=0x7f03000b;
     public static final int list=0x7f03000c;
     public static final int lock=0x7f03000d;
@@ -51,6 +56,7 @@ public final class R {
     public static final int primary=0x7f030012;
     public static final int provider=0x7f030013;
     public static final int refresh=0x7f030014;
+    public static final int remove_key=0x7f03001c;
     public static final int save=0x7f030015;
     public static final int status=0x7f030016;
     public static final int title=0x7f030017;
@@ -62,6 +68,7 @@ public final class R {
     public static final int activity_models=0x7f040002;
     public static final int activity_unlock=0x7f040003;
     public static final int item_key=0x7f040004;
+    public static final int item_key_input=0x7f040006;
     public static final int item_model=0x7f040005;
   }
   public static final class mipmap {
@@ -93,6 +100,7 @@ public final class R {
     public static final int edit=0x7f060015;
     public static final int edit_key=0x7f060016;
     public static final int empty_password=0x7f060017;
+    public static final int key_box_limit=0x7f060039;
     public static final int keys_title=0x7f060018;
     public static final int label=0x7f060019;
     public static final int loading_models=0x7f06001a;
@@ -113,18 +121,20 @@ public final class R {
     public static final int ok=0x7f060029;
     public static final int password_hint=0x7f06002a;
     public static final int provider=0x7f06002b;
-    public static final int refresh=0x7f06002c;
-    public static final int save=0x7f06002d;
-    public static final int saved=0x7f06002e;
-    public static final int tagline=0x7f06002f;
-    public static final int tap_model_hint=0x7f060030;
-    public static final int test_result_title=0x7f060031;
-    public static final int testing=0x7f060032;
-    public static final int unlock=0x7f060033;
-    public static final int unlock_title=0x7f060034;
-    public static final int vault_exists=0x7f060035;
-    public static final int view_models=0x7f060036;
-    public static final int wrong_password=0x7f060037;
+    public static final int provider_key_limit=0x7f06002c;
+    public static final int refresh=0x7f06002d;
+    public static final int remove_key=0x7f06003a;
+    public static final int save=0x7f06002e;
+    public static final int saved=0x7f06002f;
+    public static final int tagline=0x7f060030;
+    public static final int tap_model_hint=0x7f060031;
+    public static final int test_result_title=0x7f060032;
+    public static final int testing=0x7f060033;
+    public static final int unlock=0x7f060034;
+    public static final int unlock_title=0x7f060035;
+    public static final int vault_exists=0x7f060036;
+    public static final int view_models=0x7f060037;
+    public static final int wrong_password=0x7f060038;
   }
   public static final class style {
     public static final int FieldInput=0x7f070000;

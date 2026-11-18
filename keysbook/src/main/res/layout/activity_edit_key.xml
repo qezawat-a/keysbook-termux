@@ -63,13 +63,25 @@
             android:layout_marginTop="14dp"
             android:text="@string/api_key" />
 
-        <EditText
-            android:id="@+id/key"
-            style="@style/FieldInput"
-            android:hint="sk-..."
-            android:inputType="textPassword"
-            android:importantForAutofill="no"
-            android:singleLine="true" />
+        <!-- Each API key sits in its own framed box; boxes are added at runtime. -->
+        <LinearLayout
+            android:id="@+id/keys_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_keys_group"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/add_key"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_button_outline"
+            android:padding="14dp"
+            android:textSize="15sp"
+            android:textColor="@color/accent"
+            android:text="@string/add_key" />
 
         <TextView
             style="@style/FieldLabel"
