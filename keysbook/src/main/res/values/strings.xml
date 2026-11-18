@@ -63,5 +63,5 @@
     <string name="base_url_copied">Copied Base URL %1$s</string>
     <string name="remove_key">Remove</string>
     <string name="key_box_limit">You can add up to %1$d keys for this provider</string>
-    <string name="provider_key_limit">This provider already has %1$d keys (the maximum)</string>
+    <string name="provider_key_limit">This provider already has %1$d saved keys. You can add %2$d more (maximum %3$d).</string>
 </resources>

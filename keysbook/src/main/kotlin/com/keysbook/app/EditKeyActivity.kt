@@ -133,8 +133,9 @@ class EditKeyActivity : Activity() {
 
         // Each provider may hold at most MAX_KEYS_PER_PROVIDER keys (the edited entry is not counted twice).
         val keysForProvider = vault.entries.count { it.provider == providerName && it.id != editingId }
-        if (keysForProvider + apiKeys.size > MAX_KEYS_PER_PROVIDER) {
-            toast(getString(R.string.provider_key_limit, MAX_KEYS_PER_PROVIDER))
+        val roomLeft = (MAX_KEYS_PER_PROVIDER - keysForProvider).coerceAtLeast(0)
+        if (apiKeys.size > roomLeft) {
+            toast(getString(R.string.provider_key_limit, keysForProvider, roomLeft, MAX_KEYS_PER_PROVIDER))
             return
         }
 
