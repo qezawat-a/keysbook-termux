@@ -27,5 +27,4 @@ jobs:
           gradle-version: 8.10
 
       - name: Build
-        working-directory: keysbook
-        run: gradle build
+        run: gradld :keysbook:build
