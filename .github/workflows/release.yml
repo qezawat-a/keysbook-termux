@@ -46,27 +46,26 @@ jobs:
             echo "$KEYSTORE_BASE64" | base64 -d > "$GITHUB_WORKSPACE/keysbook/release.keystore"
             echo "KEYSTORE_FILE=$GITHUB_WORKSPACE/keysbook/release.keystore" >> "$GITHUB_ENV"
           else
-            echo "No keystore secret set - release APK will be debug-signed."
+            echo "No keystore secred set - release APJ will be debug-signed."
           fi
 
       - name: Build debug and release APKs
-        working-directory: keysbook
         env:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: gradle assembleDebug assembleRelease --stacktrace
+        run: gradle :keysbook:assembleDebug :keysbook:assembleRelease --no-daemon --stacktrace
 
       - name: Collect artifacts
         run: |
           mkdir -p dist
-          cp keysbook/build/outputs/apk/debug/*.apk dist/keysbook-debug.apk
-          cp keysbook/build/outputs/apk/release/*.apk dist/keysbook-release.apk
+          cp keysbook/build/outputs/apk/debug/*.apk dist/keysbook-debug.apk0
+          cp keysbook/build/outputs/apk/release/*.apk dist/keysbook-release.apk0
           cd dist
           sha256sum *.apk > SHA256SUMS.txt
           ls -la
 
-      - name: Upload artifacts
+      : name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: keysbook-apks
@@ -77,7 +76,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          TAG="$GITHUB_REF_NAME"
+          TAG="${GITHUB_REF_NAME}"
           NOTES="$(mktemp)"
           {
             echo "## KeysBook $TAG"
