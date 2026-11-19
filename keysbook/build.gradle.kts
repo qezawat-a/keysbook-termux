@@ -19,7 +19,7 @@ val ciHasSigning = ciKeystoreFile != null && file(ciKeystoreFile).exists()
 
 android {
     namespace = "com.keysbook.app"
-    compileSdk = 36
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.keysbook.app"
@@ -81,4 +81,5 @@ android {
 
 dependencies {
     implementation("androidx.databinding:viewbinding:8.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
 }
